@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Template Areas</title>
+        <link rel="stylesheet" href="style.css">
+        <style>
+            .container{
+                display: grid;
+                width: 100%;
+                height: 600px;
+                grid-template-columns: 200px 1fr 1fr;
+                grid-template-rows: 80px 1fr 1fr 100px;
+                gap: 1rem;
+                grid-template-areas: 
+                    "header header header"
+                    "sidebar content-1 content-1"
+                    "sidebar content-2 content-3"
+                    "footer footer footer ";
+            }
+            .header{
+                grid-area: header;
+            }
+            .sidebar{
+                grid-area: sidebar;
+            }
+            .content-1{
+                grid-area: content-1;
+            }
+            .content-2{
+                grid-area: content-2
+            }
+            .content-3{
+                grid-area: content-3;
+            }
+            .footer{
+                grid-area: footer;
+            }
+            
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <div class="item header">header</div>
+            <div class="item sidebar">sidebar</div>
+            <div class="item content-1">content-1</div>
+            <div class="item content-2">content-2</div>
+            <div class="item content-3">content-3</div>
+            <div class="item footer">footer</div>
+        </div>
+    </body>
+</html>

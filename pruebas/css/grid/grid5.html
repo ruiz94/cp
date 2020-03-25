@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Desing Grid</title>
+        <style>
+            *{
+                /* margin: 0; */
+                box-sizing: border-box;
+                background-repeat: no-repeat;
+            }
+            body{
+                margin: 0;
+            }
+            html{
+                background-color: #feee75;
+                font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+                letter-spacing: -1px;
+            }
+            .header{
+                display: grid;
+                grid-template-columns: 1fr min-content min-content max-content 100px;
+                grid-template-rows: 700px auto auto;
+                /* gap: 1em; */
+            }
+            .header img{
+                grid-column: 1 / -1;
+                grid-row: 1 / -1;
+                justify-self: end;
+            }
+            .header h1{
+                grid-column: 2 / 4;
+                grid-row: 2;
+                display: grid;
+                grid-template-columns: repeat(3, 0.9em);
+                font-size: 3rem;
+                line-height: 1.1;
+            }
+            .header h1 span{
+                /* writing-mode: sideways-lr; */
+                writing-mode: vertical-lr;
+                transform: rotate(180deg);
+            }
+            .header h1 span b{
+                width: 0.15em;
+                background-color: black;
+                height: 2em;
+                display: inline-block;
+                margin-bottom: 0.2em;
+            }
+            .header ul{
+                grid-column: 3 / 5;
+                grid-row: 3;
+                list-style: none;
+                color: #b90000;
+                font-weight: bold;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="main">
+            <div class="header">
+                <img src="img/graphic.jpg" alt="IMG">
+                <h1>
+                    <span>Twopots</span> 
+                    <span><b></b>Design</span> 
+                    <span>Studio</span>
+                </h1>
+                <ul>
+                    <li>Xavier Esclusa Trias</li>
+                    <li>twopots-design.com</li>
+                    <li>Barcelona
+                </li></ul>
+            </div>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Pac-Man</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+    <!-- Breadcrum -->
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/">Home</a></li>
+            <li class="breadcrumb-item" aria-current="page" >Pac Man</li>
+        </ol>
+    </nav>
+    <!-- <h1>Hola</h1> -->
+    <div class="contenedor">
+        <div class="can">
+            <canvas id="pac_man" width="500" height="500" style="border: 1px black solid;"></canvas>
+        </div>
+    </div>
+    <script>
+        var ctx = document.getElementById("pac_man").getContext("2d");
+        // const map = [
+        //     [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
+        //     [1,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,0,1],
+        //     [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+        //     [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+        //     [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+        //     [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+        //     [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+        //     [1,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,0,1],
+        //     [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
+        // ]
+        var map = [
+            [1,1,1,1,1],
+            [1,0,0,0,1],
+            [1,0,1,0,1],
+            [1,0,0,0,1],
+            [1,1,1,1,1],
+        ],
+        count = 0;
+        drawSquare = function(color, x, y){
+            var widht = 15+x,
+                height = 15+y;
+            ctx.fillStyle = 'red';
+            if (color) {
+                ctx.fillStyle = color;
+            }
+            // ctx.fillText(color, x, y);
+            if (count < (map.length * map[0].length)) {
+                console.log({x, y, widht, height,count});
+                ctx.fillRect(x, y, widht, height);
+                count++;
+            }
+        }
+        var x = 20, y = 20;
+        
+        for(let fila in map){
+            x = 20;
+            for(let celda in map[fila]){
+                // console.log(map[fila][celda]);
+                // let color=map[fila][celda];
+                let color='#ffffff';
+                if(map[fila][celda] == 1){
+                    color = '#000044';
+                }
+                // console.log({color});
+                
+                drawSquare(color, x, y);   
+                x += 20;
+                
+            }
+            y += 20;
+        }
+    </script>
+</body>
+</html>

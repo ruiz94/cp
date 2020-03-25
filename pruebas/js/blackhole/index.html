@@ -1,0 +1,301 @@
+<style>
+    body{
+        background-color: black;
+        min-width: 500px !important;
+        min-height: 500px !important;
+        overflow: hidden;
+    }
+    .container{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+        position: relative;
+        overflow: hidden;
+        min-width: 500px !important;
+        min-height: 500px !important;
+        
+    }
+        
+    
+    .container .init{
+        background-color: #000000;
+        border-radius: 215px;
+        height: 400px;
+        width: 400px;
+        box-shadow: 0px 0px 12px 23px white;
+    }
+    .container .uno{
+        box-shadow: 0px 0px 12px 23px #a29292;
+        border-radius: 234px;
+        width: 443px;
+        height: 433px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        animation: rotateTres 3s infinite;
+        animation-timing-function: cubic-bezier(0, -0.01, 1, 1);
+        /* position: absolute;
+        left: 545px; */
+    }
+    .container .dos{
+        box-shadow: 0px 0px 285px 10px #e4c5c5;
+        border-radius: 234px;
+        width: 435px;
+        height: 430px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        animation: rotateDos 3s infinite;
+        animation-timing-function: cubic-bezier(0, -0.01, 1, 1);
+        /* position: absolute;
+        left: 556px; */
+    }
+    .container .tres{
+        box-shadow: 0px 0px 299px 117px #080c23;
+        border-radius: 234px;
+        width: 480px;
+        height: 495px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 10;
+        position: absolute;
+        /* transform: rotate(360deg); */
+        /* animation: rotateTres 3s infinite;
+        animation-timing-function: cubic-bezier(0, -0.01, 1, 1); */
+    }
+    .container .uno, .container .dos, .container .tres, .container .init{
+        transition: height 2s, width 2s;
+    }
+    .star{
+        /* position: absolute; */
+        background-color: #ffffffab;
+        border-radius: 20px;
+        /* animation: rotateStars 20s  infinite;
+        animation-timing-function: cubic-bezier(0, -0.01, 1, 1); */
+        
+    }
+    .space{
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        animation: rotateStars 150s  infinite;
+        animation-timing-function: cubic-bezier(0, -0.01, 1, 1);
+    }
+    @keyframes small1{
+        0%{
+            transform: scale(0.5);
+        }50%{
+            transform: scale(1.5);
+        }100%{
+            transform: scale(0.5);
+        }
+    }
+    @keyframes rotateTres{
+        0%{
+            transform: rotate(0deg);
+        }100%{
+            transform: rotate(360deg);
+        }
+    }
+    @keyframes rotateDos{
+        0%{
+            transform: rotate(0deg);
+        }100%{
+            transform: rotate(-360deg);
+        }
+    }
+    @keyframes rotateStars{
+        0%{
+            transform: rotate(0deg);
+        }100%{
+            transform: rotate(360deg);
+        }
+    }
+    .img-per{
+        position: absolute;
+    }
+    .borrego{
+        position: relative;
+        left: -600px;
+        bottom: -400px;
+    }
+    .mamarre{
+        position: relative;
+        left: 1200px;
+        bottom: 300px;
+    }
+    .img-per img{
+        width: 100px; 
+        height: 100px;
+        overflow: hidden;
+        
+    }
+    .va_pa_ya{
+        left: 80px;
+        bottom: 0;
+        opacity: 0;
+        /* transform: rotate(360deg); */
+        transition: left 4s, bottom 4s, opacity 6s;
+        z-index: 11;
+        animation: rotarP 1.5s  infinite;
+        animation-timing-function: cubic-bezier(0, -0.01, 1, 1);
+        
+    }
+    @keyframes rotarP{
+        0%{
+            transform: rotate(0deg);
+        }100%{
+            transform: rotate(360deg);
+        }
+    }
+    @media only screen and (max-width: 1200px){
+        .container .uno{
+            width: 334px;
+            height: 343px;
+        }
+        .container .dos{
+            width: 402px;
+            height: 342px;
+        }
+        .container .tres{
+            width: 341px;
+            height: 379px;
+        }
+        .container .init{
+            
+            height: 300px;
+            width: 300px;
+            
+        }
+        .container .uno, .container .dos, .container .tres, .container .init{
+            transition: height 2s, width 2s;
+        }
+    }
+    @media only screen and (max-width: 700px){
+        .container .uno{
+            width: 132px;
+            height: 126px;
+        }
+        .container .dos{
+            width: 129px;
+            height: 120px;
+        }
+        .container .tres{
+            width: 182px;
+            height: 188px;
+            position: absolute;
+        }
+        .container .init{
+            height: 100px;
+            width: 100px;
+        }
+        .container .uno, .container .dos, .container .tres, .container .init{
+            transition: height 2s, width 2s;
+        }
+        .va_pa_ya{
+            left: 60px;
+        }
+        .va_pa_ya.mamarre{
+            left: -40px;
+        }
+        .img-per img{
+            transform: scale(0.5);
+        }
+    }
+    
+</style>
+<div class="container">
+    <!-- <span class="img-per borrego "><img style="" src="https://pruebadvi.s3.amazonaws.com/Consultora%20Mexicana%20de%20Negocios/Consutora%20Mexicana/DVCUP16172/Banco%20de%20imagenes/dvidev778/borrepgpng-compressor.png" alt=""></span> -->
+    <!-- <span class="img-per mamarre "><img style="" src="https://pruebadvi.s3.amazonaws.com/Consultora%20Mexicana%20de%20Negocios/Consutora%20Mexicana/DVCUP16172/Banco%20de%20imagenes/dvidev778/2019-08-09-compressor.png" alt=""></span> -->
+    <div class="tres">
+
+        <div class="dos">
+    
+            <div class="uno">
+                <div class="init"></div>
+            </div>
+        </div>
+    </div>
+    
+</div>
+<div class="space">
+
+</div>
+<script
+  src="https://code.jquery.com/jquery-3.4.1.min.js"
+  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+  crossorigin="anonymous"></script>
+<script>
+    function drawStars(){
+        
+        // console.log(screen)
+        var espacio = document.createDocumentFragment();
+        for (let index = 0; index < 2000; index++) {
+            var medida = Math.floor( Math.random() * 6 ) + 3
+            
+            var rango = obtRango()
+            var star = '<span class="star" style=""></span>';
+            var span = document.createElement('span');
+            span.classList.add('star')
+            span.style.width =  medida;           
+            span.style.height =  medida;           
+            span.style.top = (index%2 == 0?'-':'')+rango.vertical;
+            span.style.left = rango.horizontal;
+            span.style.position = 'absolute';
+            span.style['background-color'] = rango.color;
+            if(index == 50 || index == 60 || index == 30){
+                var img = document.createElement('img')
+                img.setAttribute('src', 'https://pruebadvi.s3.amazonaws.com/Consultora%20Mexicana%20de%20Negocios/Consutora%20Mexicana/DVCUP16172/Banco%20de%20imagenes/dvidev778/borrepgpng-compressor.png')
+                img.style.width =  medida;           
+                img.style.height =  medida;
+                img.style["box-shadow"] =  '0px 0px 10px 1px white';
+                span.appendChild(img)
+            }
+            if(index%2 == 0){
+                span.style.animation = "small1 6s infinite"
+            }
+            espacio.appendChild(span);
+        }
+        $(".space").append(espacio)
+        interval();
+    }
+    function obtRango(){
+        let screen = window.screen
+        let blackHole = document.querySelector('.container .tres');
+        let coorsBlackHole = blackHole.getBoundingClientRect();
+        var coors = {};
+        var colors = ['#ffffffab', '#ffffff57', '#ffffff'];
+        var pasa = true;
+            
+        while(pasa){
+            horizontal =  Math.floor(Math.random() * ((screen.width + 10000) - 0)) + 0;
+            vertical =  Math.floor(Math.random() * ((screen.height + 10000) - 0)) + 0;
+            if(vertical < coorsBlackHole.top || vertical > coorsBlackHole.bottom || horizontal < coorsBlackHole.left || horizontal > coorsBlackHole.right){
+                pasa = !pasa;
+                coors.horizontal = horizontal;
+                coors.vertical = vertical;
+                coors.color = colors[Math.floor( Math.random() * ( 3 - 0) )]
+            }
+        }
+        return coors;
+    }
+    drawStars()
+    function interval(){
+        var borre = $(".img-per.borrego")
+        var mamarre = $(".img-per.mamarre")
+        borre.addClass('va_pa_ya')
+        setInterval(function(){
+            if(borre.hasClass('va_pa_ya')){
+                mamarre.addClass('va_pa_ya')
+                borre.removeClass('va_pa_ya')
+            }else{
+                mamarre.removeClass('va_pa_ya')
+                borre.addClass('va_pa_ya')
+            }
+        }, 5000)
+    }
+</script>

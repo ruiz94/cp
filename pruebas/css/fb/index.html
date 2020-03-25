@@ -1,0 +1,1114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>FB</title>
+    <!-- Colocamos el icono de la página -->
+    <link rel="icon" type="image/png" href="https://img.icons8.com/color/48/000000/facebook-new.png" />
+    <!-- <img src="https://img.icons8.com/color/48/000000/facebook-new.png"> -->
+    <!-- algunos iconos e imágenes son de icons8.com  -->
+    <!-- linearicons.com  -->
+    <link rel="stylesheet" href="https://cdn.linearicons.com/free/1.0.0/icon-font.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Livvic&display=swap" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <style>
+        body{
+            font-family: 'Livvic', sans-serif;
+        }
+        .fb{
+            width: 80%;
+            margin: auto;   
+            
+        }
+        .fb .header{
+            display: flex;
+            justify-content: space-between;
+            border-bottom: 1px solid #8080801f;
+            /* margin-bottom: 30px; */
+            position: fixed;
+            background-color: white;
+            z-index: 1;
+            width: 80%;
+            top: 0;
+        }
+        
+        .fb .cuerpo{
+            display: flex;
+            justify-content: space-between;
+            top: 100px;
+            position: relative;
+            overflow: hidden;
+        }
+        .fb .cuerpo .left{
+            transition: transform 2s;
+        }
+        .fb .cuerpo .content-left{
+            width: 200px;
+            min-width: 200px;
+            transition: width 2s, min-width 2s;
+        }
+        .fb .cuerpo .left .menu {
+            margin: 5px;
+            font-weight: bolder;
+        }
+        .fb .cuerpo .title {
+            font-weight: bold !important;
+            color: black !important;
+            display: flex;
+            align-items: center;
+        }
+        .fb .cuerpo .left .news {
+            margin: 5px;
+            margin-bottom: 30px !important;
+        }
+        .fb .cuerpo .left  a{
+            color: gray;
+            text-decoration: none;
+            opacity: .6;
+        }
+        .fb .cuerpo .left .news> div{
+            display: flex;
+            justify-content: flex-start;
+            margin: 5px 0px 10px;
+            color: gray;
+        }
+
+        .fb .cuerpo .left .shortcuts {
+            margin: 5px;
+            margin-bottom: 30px !important;
+        }
+
+        .fb .cuerpo .left .create {
+            margin: 5px;
+            margin-bottom: 30px !important;
+        }
+
+        .fb .cuerpo .left .shortcuts div {
+            margin: 5px 0px 10px;
+            color: gray;
+        }
+
+        .fb .cuerpo .left .create div {
+            margin: 5px 0px 10px;
+            color: gray;
+        }
+        .fb .left .icon{
+            padding-right: 10px;
+        }
+        .fb img.icon{
+            height: 15px;
+            width: 15px;
+            opacity: 6;
+        }
+        .fb img.mini{
+            height: 20px;
+            width: 20px;
+            opacity: 6;
+        }
+        .fb img.icon2{
+            height: 25px;
+            width: 25px;
+            opacity: 6;
+        }
+        .fb img.icon2-1{
+            width: 40px;
+            height: 40px;
+            margin-right: -10px;
+            margin-left: -10px;
+        }
+        .fb img.icon3{
+            height: 40px;
+            width: 40px;
+            border-radius: 20px;
+        }
+        .fb img.icon4{
+            height: 60px;
+            width: 60px;
+            border-radius: 40px;
+            margin-right: 20px;
+        }
+        .fb img.img_status_1{
+            height: 220px;
+            width: 150px;
+            border-radius: 11px;
+        }
+        .fb img.img_status_2{
+            width: 100%;
+            border-radius: 11px;
+        }
+        .fb .header .logo{
+            width: 200px;
+            display: flex;
+            justify-content: center;
+        }
+        .fb .header .logo p{
+            color: #00b0ff;
+            font-size: 26px;
+            font-weight: bolder;
+        }
+        .fb .header .perfil, .perfil .iconos{
+            display: flex;
+            width: 300px;
+            justify-content: space-around;
+            align-items: center;
+        }
+        .fb .header .perfil .iconos span{
+            cursor: pointer;
+        }
+        .fb .header .perfil .nombre{
+            padding-left: 5px;
+            font-weight: bold;
+        }
+        .fb .header .perfil .icono-perfil{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            position: relative;
+        }
+        .fb .header .search{
+            width: calc(100% - 500px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: width 1.5s;
+        }
+        .fb .cuerpo .right{
+            transition: transform 1s;
+        }
+        .fb .cuerpo .content-right{
+            width: 300px;
+            min-width: 300px;
+            transition: width 2s, min-width 2s;
+        }
+        .fb .cuerpo .content-center{
+            width: calc(100% - 580px);
+            /* margin: 40px; */
+            transition: width 1s;
+        }
+        .fb .cuerpo .center .head{
+            padding: 20px;
+            margin-bottom: 20px;
+            
+        }
+        .fb .cuerpo .center .botones{
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            /* flex-wrap: wrap; */
+        }
+        .fb .cuerpo .center .botones > span{
+            display: flex;
+            align-items: center;
+            /* text-decoration: none; */
+            color: gray;
+            margin-right: 20px;
+            background-color: #80808021;
+            padding: 10px;
+            border-radius: 20px;
+            font-size: x-small;
+            opacity: .6;
+            cursor: pointer;
+        }
+        .fb .cuerpo .center .botones span img{
+            margin-right: 10px;
+        }
+        .fb .cuerpo .center .botones span.share{
+            margin-left: auto;
+            background-color: #2196f3;
+            color: white;
+            padding-left: 30px;
+            padding-right: 30px;
+            font-size: small;
+            opacity: 1;
+        }
+        .fb .cuerpo .center .head .cabezera{
+            display: flex;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+        .fb .cuerpo .center .head .cabezera input{
+            font-size: x-large;
+            padding: 15px;
+            border: none;
+            width: 100%;
+        }
+        .fb input:focus{
+            outline:0px;
+        }
+        .fb .cuerpo .center .publicaciones .publicacion{
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        .fb .cuerpo .center .publicaciones .publicacion .head2{
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 20px;
+        }
+        .fb .cuerpo .center .publicaciones .publicacion .head2 .datos .nombre{
+            margin-bottom: 0px;
+            font-weight: bold;
+        }
+        .fb .cuerpo .center .publicaciones .publicacion .head2 .datos .last.connection{
+            margin-top: 1px;
+            font-size: smaller;
+            color: #b7b7b7;
+        }
+        .fb .cuerpo .center .publicaciones .publicacion .content .texto{
+            /* font-family: serif; */
+            color: #000000a6;
+            
+        }
+        .fb .cuerpo .center .publicaciones .publicacion .footer{
+            margin-top: 20px;
+            display: flex;
+            align-items: center;
+        }
+        .fb .cuerpo .center .publicaciones .publicacion .footer a{
+            margin-right: 30px;
+            text-decoration: none;
+            color: gray;
+            display: flex;
+            align-items: center;
+            opacity: .6;
+        }
+        .fb .cuerpo .center .publicaciones .publicacion .footer a img{
+            margin-right: 5px;
+        }
+        .fb .cuerpo .center .publicaciones .publicacion .content .imagenes{
+            display: flex;
+            justify-content: space-around;
+        }
+        .fb .cuerpo .center .publicaciones .publicacion .content .imagenes .mas{
+            display: flex;
+            position: relative;
+            background-color: rgba(0,0,0,1);
+            border-radius: 11px;
+            height: 220px;
+        }
+        .fb .cuerpo .center .publicaciones .publicacion .content .imagenes .mas .simbolo{
+            position: absolute;
+            font-size: -webkit-xxx-large;
+            font-weight: 600;
+            font-family: fantasy;
+            color: white;
+            left: 50px;
+            top: 30px;
+        }
+        .fb .cuerpo .center .publicaciones .publicacion .content .imagenes .mas .img_status_1{
+            opacity: .5;
+        }
+        .fb .cuerpo .right-float{
+            margin-left: auto;
+            cursor: pointer;
+        }
+        .fb .cuerpo .count.right-float{
+            background-color: red;
+            border-radius: 10px;
+            width: 20px;
+            height: 20px;
+            color: white;
+            font-size: smaller;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 2px;
+        }
+        .fb .header .search #input_search{
+            width: 90%;
+            height: 30px;
+            font-size: x-large;
+            border: 1px solid #9e9e9e1c;
+            padding: 10px;
+            color: #80808099;
+            padding-left: 50px;
+            
+        }
+        .fb .header .search img{
+            position: relative;
+            left: 40px;
+        }
+        .fb .cuerpo .right .hijo{
+            width: 95%;
+            margin: auto;
+            padding: 10px;
+            margin-block-end: 20px;
+        }
+        .fb .cuerpo .right .stories img.story {
+            width: 50px;
+            border-radius: 9px;
+            height: 62.5px;
+        }
+        .fb .cuerpo .right .stories .imgs {
+            display: flex;
+        }
+        .fb .cuerpo .right .stories .imgs > div {
+            position: relative;
+            text-align: center;
+        }
+        .fb .cuerpo .right .stories .imgs > div p {
+            position: relative;
+            bottom: 25px;
+        }
+        .fb .cuerpo .right .stories .imgs > div .centro{
+            position: relative;
+            left: 1px;
+            bottom: 20px;
+        }
+        .fb .cuerpo .right .stories .imgs > div .centro.two{
+            height: 25px;
+            width: 25px;
+            border-radius: 18px;
+            
+        }
+        .fb .tiene-historia{
+            border: 2px solid #2196F3;
+            padding: 3px;
+        }
+        .fb .cuerpo .right .stories .imgs div:first-child .centro{
+            bottom: 45px;
+        }
+        .fb .cuerpo .right .stories .imgs div:first-child p{
+            bottom: 19px;
+        }
+        .fb .cuerpo .right .chat .online .circle.estatus{
+            width: 10px;
+            height: 10px;
+            border-radius: 10px;
+        }
+        .fb .cuerpo .right .chat .online .circle.estatus.green{
+            background-color: #15de15;
+        }
+        .fb .cuerpo .right .chat .online .circle.estatus.ambar{
+            background-color: #ffa500;
+        }
+        .fb .cuerpo .right .chat .ofline .circle.estatus{
+            background-color: #b9b8b8;
+            width: 10px;
+            height: 10px;
+            border-radius: 10px;
+        }
+        .fb .cuerpo .right .chat .circle.estatus.ch{
+            position: absolute;
+            left: 26px;
+            top: 20px;
+        }
+        /* .fb .cuerpo .right .chat .online .title2, .fb .cuerpo .right .chat .ofline .title2{ */
+        .fb .cuerpo .right .chat .title2{
+            display: flex;
+            align-items: center;
+            font-weight: bold;
+        }
+        .fb .cuerpo .right .chat .online .title2 p, .fb .cuerpo .right .chat .ofline .title2 p{
+            margin-right: 10px;
+        }
+        .fb .cuerpo .right .chat .usuarios .persona p{
+            width: 150px;
+        }
+        .fb .cuerpo .right .chat .usuarios .persona{
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: relative;
+        }
+        .fb .shadow{
+            box-shadow: 0px 0px 10px -8px #000000;
+        }
+        .fb .header a{
+            text-decoration: none;
+        }
+        .fb .header .perfil .icono-perfil .drop-menu{
+            position: absolute;
+            top: 66px;
+            left: -89px;
+            background-color: white;
+            width: 200px;
+            border-top: none;
+            z-index: 1;
+            box-shadow: 0px 2px 10px -8px #000000;
+            /* font-family: sans-serif; */
+            display: none;
+            /* opacity: 0; */
+            /* transition-property: opacity; */
+            /* transition-duration: .5s; */
+            /* transition-timing-function: cubic-bezier(0.4, 0, 1, 1); */
+            /* transition-delay: 0s; */
+        }
+        /* .fb .desplegar-drop{
+            opacity: 1 !important;
+        } */
+        .fb .header .perfil .icono-perfil .drop-menu ul{
+            list-style: none;
+            padding-left: 20px;
+        }
+        .fb .header .perfil .icono-perfil .drop-menu ul li{
+            padding: 10px;
+            padding-left: 0px;
+            
+            
+        }
+        .fb .header .perfil .icono-perfil .drop-menu ul li::after{
+            content: '';
+            height: 2px;
+            background-color: #03A9F4;
+            transition: width .5s;
+            display: block;
+            width: 0;
+        }
+        .fb .header .perfil .icono-perfil .drop-menu ul li:hover::after{
+            width: 100%;
+        }
+        .fb #input-estatus{
+            width: 100%;
+            height: 70px;
+            display: flex;
+            align-items: center;
+        }
+        .fb #input-estatus:focus{
+            outline:0px;
+            
+        }
+        [contentEditable=true]:empty:not(:focus):before{
+            content:attr(placeholder)
+        }
+        .onBlurCss{
+            filter: blur(3px);
+        }
+        .fb .header .perfil .icono-perfil .divide{
+            display: none;
+        }
+        .fb .header .perfil .icono-perfil .forPhone{
+            display: none
+        }
+        .fb .header .focusSearch{
+            width: 100%;
+            z-index: 1;
+        }
+        .fb .visible{
+            /* display: block !important; */
+            left: 0px !important;
+        }
+        .fb .noVisible{
+            display: none !important;
+            left: 25em;
+        }
+        /* Media Query */
+        @media only screen and (max-width: 1260px){
+            .fb .cuerpo .left{
+                transform: translateX(-200px);
+                transition: transform 2s;
+            }
+            .fb .cuerpo .content-left{
+                width: 0;
+                min-width: 0;
+                transition: width 2s, min-width 2s;
+            }
+            .fb .cuerpo .right{
+                transform: translateX(300px);
+                /* transition: transform 1s; */
+            }
+            .fb .cuerpo .content-right{
+                width: 0;
+                min-width: 0;
+                transition: width 2s, min-width 2s;
+            }
+            .fb .cuerpo .content-center{
+                width: 100%;
+                transition: width 2s;
+            }
+            /* body{
+                width: 96%;
+            }
+            .fb{
+                width: calc(100% - 16px);
+                margin: 0;
+                min-width: 100% !important;
+                margin-bottom: 60px;
+            }
+            .fb .cuerpo .left, .right{
+                width: 33% !important;
+            }
+            .fb img.img_status_1{
+                height: 150px;
+                width: 100px;
+                border-radius: 8px;
+            }
+            .fb .cuerpo .center .publicaciones .publicacion .content .imagenes .mas{
+                height: 150px;
+            }
+            .fb .cuerpo .center .publicaciones .publicacion .content .imagenes .mas .simbolo{
+                left: 22px;
+                top: -1px;
+            } */
+        }
+        @media only screen and (max-width: 600px) {
+            /* body{
+                width: 96%;
+            } */
+            /* .fb{
+                width: calc(100% - 16px);
+                margin: 0;
+                margin-bottom: 60px;
+            } */
+            /* .fb .cuerpo{
+                justify-content: center;
+                overflow: hidden;
+                position: relative;
+            } */
+            .fb .header .logo p{
+                font-size: 16px;
+            }
+            .fb .header .logo{
+                width: 80px;
+                justify-content: flex-start;
+            }
+            /* .fb .cuerpo .left, .right{
+                position: absolute;
+                left: 100%;
+                transition: ease 1s;
+                background-color: white;
+                z-index: 3;
+                margin-top: 0;
+            } */
+            /* .fb .cuerpo .center{
+                width: 320px !important;
+                margin: 0px !important;
+                height: 100%;
+            } */
+            /* .fb .cuerpo .left, .right{
+                width: 310px !important;
+                margin: 0px !important;
+                height: 100%;
+                top: 0;
+                margin-top: 0px !important
+            } */
+            .fb .header .perfil .iconos{
+                position: fixed;
+                bottom: 0;
+                left: 0;
+                width: 100%;
+                background-color: white;
+                box-shadow: 1px 1px 33px -16px black;
+                height: 60px;
+                justify-content: space-around;
+                z-index: 4;
+            }
+            .fb .header .perfil .icono-perfil{
+                margin-left: auto;
+            }
+            .fb .header .perfil{
+                width: 100px;
+            }
+            .fb .header .search{
+                width: 50px;
+                margin-left: auto;
+                transition: width 1.5s;
+            }
+            .fb .header .search:hover{
+                width: calc(100%);
+                /* z-index: 1; */
+                /* width: 30px;
+                margin-left: auto; */
+            }
+            .fb .header .search img{
+                left: 26px;
+            }
+            .fb .header .search #input_search{
+                padding-left: 33px;
+                font-size: inherit;
+                border: none;
+            }
+            .fb img.icon2 {
+                height: 20px;
+                width: 20px;
+            }
+            .fb .cuerpo .center .publicaciones .publicacion .content .imagenes{
+                flex-flow: wrap;
+            }
+            .fb .header .perfil .icono-perfil .drop-menu{
+                width: 320px;
+                right: -16px;
+                left: auto;
+                
+            }
+            .fb .cuerpo .center .botones{
+                justify-content: space-around;
+            }
+            .fb .cuerpo .center .botones > span span{
+                display: none;
+            }
+            .fb .cuerpo .center .botones span.share{
+                padding-left: 15px; 
+                padding-right: 15px;
+            }
+            .fb .divide-show{
+                height: 1px;
+                background-color: #03b1ff;
+                width: 200px;
+                display: block !important;
+            }
+            .fb .forPhone-show{
+                display: block !important;
+            }
+            .fb .icono-perfil .drop-menu .selected{
+                border-left: 2px solid #03b1ff;
+                padding-left: 37px !important;
+            }
+            .fb .header .perfil .icono-perfil .drop-menu ul li::after{
+                content: none;
+            }
+            
+        }
+    </style>
+    <script src="https://unpkg.com/feather-icons"></script>
+</head>
+<body>
+    <div class="fb">
+        <div class="header">
+            <div class="logo">
+                <a href=""><p>facebook</p></a>
+            </div>
+            <div class="search">
+                <img class="icon2" src="https://img.icons8.com/ios/64/000000/zoom-in.png">
+                <input id="input_search" type="text" placeholder="Search">
+            </div>
+            <div class="perfil">
+                    <div class="iconos">
+                        <span ><img class="icon2" src="https://img.icons8.com/ios/30/000000/add-user-male.png"></span>
+                        <span ><img class="icon2" src="https://img.icons8.com/ios/50/000000/facebook-messenger.png"></span>
+                        <span ><img class="icon2-1" src="https://img.icons8.com/carbon-copy/100/000000/bell.png"></span>
+                        <span ><img class="icon2-1" src="https://img.icons8.com/carbon-copy/100/000000/automatic.png"></span>
+                    </div>
+                    <div class="icono-perfil">
+                            <img class="icon3" src="/img/css/fb/perfil2.jpg">
+                            <p class="nombre">Bianka</p>
+                            <div class="drop-menu" id="drop-menu">
+                                <ul>
+                                    <li class="support">Support</li>
+                                    <li class="help">Help</li>
+                                    <li class="settings">Settings</li>
+                                    <li class="log out">Log Out</li>
+                                </ul>
+                                <span class="divide"></span>
+                                <ul class="forPhone">
+                                    <li class="feed selected">Feed</li>
+                                    <li class="menu">Menu</li>
+                                    <li class="stories">Stories & Chat</li>
+                                </ul>
+                            </div>
+                    </div>
+            </div>
+        </div>
+        <div class="cuerpo">
+            <div class="content-left">
+                <div class="left">
+                    <div class="menu">Menu</div>
+                    <div class="news">
+                        <div class="title">
+                        <a href=""><img class="icon" src="https://img.icons8.com/ios/48/000000/news.png"> News feed </a><i class="right-float" data-feather="more-horizontal"></i></div>
+                        <div class="messenger"><a href=""><img class="icon" src="https://img.icons8.com/ios/48/000000/facebook-messenger.png"> Messenger</a> <span class="count right-float">3</span></div>
+                        <div class="photos"><a href=""><img class="icon" src="https://img.icons8.com/ios/48/000000/camera.png"> Photos</a></div>
+                        <div class="pages"><a href=""><img class="icon" src="https://img.icons8.com/wired/64/000000/layers.png"> Pages</a></div>
+                        <div class="events"><a href=""><img class="icon" src="https://img.icons8.com/ios/48/000000/overtime.png"> Events </a><span class="count right-float">3</span></div>
+                        <div class="groups"><a href=""><img class="icon" src="https://img.icons8.com/ios/48/000000/google-groups.png"> groups </a><span class="count right-float">7</span></div>
+                        <div class="market"><a href=""><img class="icon" src="https://img.icons8.com/ios/48/000000/shop.png"> Marketplace</a></div>
+                        <div class="saved"><a href=""><img class="icon" src="https://img.icons8.com/ios/48/000000/bookmark-ribbon.png"> Saved</a></div>
+                    </div>
+                    <div class="shortcuts">
+                        <div class="title">Shortcuts</div>
+                        <div><a href=""><img class="icon" src="https://img.icons8.com/ios/48/000000/bbc-logo.png"> BBC</a></div>
+                        <div><a href=""><img class="icon" src="https://ambientweather.net/wp-content/uploads/2018/03/Wunderground-logo-small.gif"> Wunderground</a></div>
+                        <div><a href=""><img class="icon" src="https://cdn2.iconfinder.com/data/icons/metro-uinvert-dock/256/CNN.png"> CNN</a></div>
+                    </div>
+                    <div class="create">
+                        <div class="title">Create</div>
+                        <div><a href=""><span class="lnr lnr-bullhorn icon"></span> Ad</a></div>
+                        <div class="page"><a href=""><img class="icon" src="https://img.icons8.com/ios/64/000000/web.png"> Page</a></div>
+                        <div class="event"><a href=""><img class="icon" src="https://img.icons8.com/ios/48/000000/overtime.png"> Event</a></div>
+                        <div class="group"><a href=""><img class="icon" src="https://img.icons8.com/ios/48/000000/google-groups.png"> Group</a></div>
+                    </div>
+                </div>
+            </div>
+            <div class="content-center">
+                <div class="center">
+                    <div class="head shadow">
+                        <div class="cabezera">
+                            <img class="icon4" src="/img/css/fb/perfil2.jpg">
+                            <div contenteditable="true" id="input-estatus" placeholder="What's on your mind, Bianka?"></div>
+                        </div>
+                        <div class="botones">
+                            <span>
+                                    <img class="mini" src="https://img.icons8.com/ios/24/000000/stack-of-photos.png">
+                                    <span>Photo / Video</span>
+                            </span>
+                            <span>
+                                <img class="mini" src="https://img.icons8.com/ios/32/000000/meditation-guru.png">
+                                <span>Feeling / Activity</span>
+                            </span>
+                            <span>
+                                    <i class="right-float" data-feather="more-horizontal"></i>
+                            </span>
+                            <span class="share" id="btn_share">
+                                Share
+                            </span>
+                        </div>
+                    </div>
+                    <div class="publicaciones">
+                        <div class="publicacion shadow">
+                            <div class="head2">
+                                    <a href=""><img class="icon4" src="/img/css/fb/persona_4.jpg" alt="Imagen de perfil"></a>
+                                    <div class="datos">
+                                        <p class="nombre">Melisa Smith</p>
+                                        <p class="last connection">34 minutes ago</p>
+                                    </div>
+                                    <i class="right-float" data-feather="more-horizontal"></i>
+                            </div>
+                            <div class="content">
+                                <div class="texto" >Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam dignissim ipsum vel
+                                     pellentesque vulputate. Vivamus eget sodales sem, dapibus aliquet felis. Vivamus tortor massa, 
+                                     consectetur at fermentum sed, ultrices vitae erat. Donec vehicula consectetur elit suscipit placerat.
+                                </div>
+                            </div>
+                            <div class="footer">
+                                <a href="">
+                                    <img class="mini" src="https://img.icons8.com/pastel-glyph/64/000000/facebook-like.png">
+                                    Like
+                                </a>
+                                <a href="">
+                                    <img class="mini" src="https://img.icons8.com/small/32/000000/speech-bubble-with-dots.png">
+                                    Comment
+                                </a>
+                                <a href="">
+                                    <img class="mini" src="https://img.icons8.com/ios/50/000000/right2.png">
+                                    Share
+                                </a>
+                            </div>
+                        </div>
+                        <div class="publicacion shadow">
+                            <div class="head2">
+                                    <a href=""><img class="icon4 tiene-historia" src="/img/css/fb/persona_2.jpg" alt="Imagen de perfil"></a>
+                                    <div class="datos">
+                                        <p class="nombre">Melisa Smith</p>
+                                        <p class="last connection">January 9 at 12:45 PM</p>
+                                    </div>
+                                    <i class="right-float" data-feather="more-horizontal"></i>
+                            </div>
+                            <div class="content">
+                                <div class="imagenes">
+                                    <a href="">
+                                        <img class="img_status_1" src="/img/css/fb/paisaje_1.jpg">
+                                    </a>
+                                    <a href="">
+                                        <img class="img_status_1" src="/img/css/fb/paisaje_2.jpg">
+                                    </a>
+                                    <a href="" class="mas">
+                                        <img class="img_status_1" src="/img/css/fb/paisaje_4.jpg">
+                                        <p class="simbolo">+3</p>
+                                    </a>
+                                    
+                                </div>
+                            </div>
+                            <div class="footer">
+                                <a href="">
+                                    <img class="mini" src="https://img.icons8.com/pastel-glyph/64/000000/facebook-like.png">
+                                    Like
+                                </a>
+                                <a href="">
+                                    <img class="mini" src="https://img.icons8.com/small/32/000000/speech-bubble-with-dots.png">
+                                    Comment
+                                </a>
+                                <a href="">
+                                    <img class="mini" src="https://img.icons8.com/ios/50/000000/right2.png">
+                                    Share
+                                </a>
+                            </div>
+                        </div>
+                        <div class="publicacion shadow">
+                            <div class="head2">
+                                    <a href=""><img class="icon4" src="/img/css/fb/persona_1.jpg" alt="Imagen de perfil"></a>
+                                    <div class="datos">
+                                        <p class="nombre">Melisa Smith</p>
+                                        <p class="last connection">January 9 at 12:45 PM</p>
+                                    </div>
+                                    <i class="right-float" data-feather="more-horizontal"></i>
+                            </div>
+                            <div class="content">
+                                <div class="una-imagen">
+                                    <a href="">
+                                        <img class="img_status_2" src="/img/css/fb/paisaje_3.jpg">
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="footer">
+                                <a href="">
+                                    <img class="mini" src="https://img.icons8.com/pastel-glyph/64/000000/facebook-like.png">
+                                    Like
+                                </a>
+                                <a href="">
+                                    <img class="mini" src="https://img.icons8.com/small/32/000000/speech-bubble-with-dots.png">
+                                    Comment
+                                </a>
+                                <a>
+                                    <img class="mini" src="https://img.icons8.com/ios/50/000000/right2.png">
+                                    Share
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="content-right">
+                <div class="right">
+                    <div class="hijo stories shadow">
+                        <div class="title">
+                            <p>Stories</p>
+                            <i class="right-float" data-feather="more-horizontal"></i>
+                        </div>
+                        <div class="imgs">
+                            <div>
+                                <a href="">
+                                <img class="story" src="/img/css/fb/perfil2.jpg" alt="story">
+                                <svg class="centro" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="24" height="24" viewBox="0 0 172 172" style=" fill:#000000;">
+                                    <g fill="none" fill-rule="none" stroke="none" stroke-width="1" stroke-linecap="butt" 
+                                        stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" 
+                                        font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal">
+                                        <path d="M0,172v-172h172v172z" fill="none" fill-rule="nonzero"></path>
+                                        <g fill="#ffffff" fill-rule="evenodd">
+                                            <g id="surface1"><path d="M78.83333,14.33333v64.5h-64.5v14.33333h64.5v64.5h14.33333v-64.5h64.5v-14.33333h-64.5v-64.5z"></path></g>
+                                        </g>
+                                    </g>
+                                </svg>
+                                </a>
+                                <p>Add your story</p>
+                            </div>
+                            <div>
+                                <a href=""><img class="story" src="/img/css/fb/img_1.jpg" alt="story"></a>
+                                <a href=""><img class="centro two tiene-historia" src="/img/css/fb/persona_1.jpg"></a>
+                                <p>Amelie Heaton</p>
+                            </div>
+                            <div>
+                                <a href=""><img class="story" src="/img/css/fb/img_2.jpg" alt="story"></a>
+                                <a href=""><img class="centro two tiene-historia" src="/img/css/fb/persona_2.jpg"></a>
+                                <p>Thomas Edison</p>
+                            </div>
+                            <div>
+                                <a href=""><img class="story" src="/img/css/fb/img_3.jpg" alt="story"></a>
+                                <a href=""><img class="centro two tiene-historia" src="/img/css/fb/persona_3.jpg"></a>
+                                <p>Hodgins blu</p>
+                            </div>
+                            
+                        </div>
+                    </div>
+                    <div class="hijo chat shadow">
+                        <div class="title">
+                            <p>Chat</p>
+                            <i class="right-float" data-feather="more-horizontal"></i>
+                        </div>
+                        <div class="online">
+                            <div class="title2"><p class="circle estatus green"></p> Online</div>
+                            <div class="usuarios">
+                                <div class="persona usuario1">
+                                        <p class="circle estatus ch green"></p>
+                                        <a href=""><img class="icon3" src="/img/css/fb/persona_4.jpg" alt="Imagen de perfil"></a>
+                                        <p class="nombre">Melisa Smith</p>
+                                        <a href=""><img class="icon2" src="https://img.icons8.com/carbon-copy/100/000000/phone.png"></a>
+                                        <a href=""><img class="icon" src="https://img.icons8.com/ios/50/000000/video-call.png"></a>
+                                </div>
+                                <div class="persona usuario2">
+                                        <p class="circle estatus ch green"></p>
+                                        <a href=""><img class="icon3" src="/img/css/fb/persona_2.jpg" alt="Imagen de perfil"></a>
+                                        <p class="nombre">Melisa Smith</p>
+                                        <a href=""><img class="icon2" src="https://img.icons8.com/carbon-copy/100/000000/phone.png"></a>
+                                        <a href=""><img class="icon" src="https://img.icons8.com/ios/50/000000/video-call.png"></a>
+                                </div>
+                                <div class="persona usuario3">
+                                        <p class="circle estatus ch ambar"></p>
+                                        <a href=""><img class="icon3" src="/img/css/fb/persona_6.jpg" alt="Imagen de perfil"></a>
+                                        <p class="nombre">Melisa Smith</p>
+                                        <a href=""><img class="icon2" src="https://img.icons8.com/carbon-copy/100/000000/phone.png"></a>
+                                        <a href=""><img class="icon" src="https://img.icons8.com/ios/50/000000/video-call.png"></a>
+                                </div>
+                                <div class="persona usuario4">
+                                        <p class="circle estatus ch ambar"></p>
+                                        <a href=""><img class="icon3" src="/img/css/fb/persona_8.jpg" alt="Imagen de perfil"></a>
+                                        <p class="nombre">Melisa Smith</p>
+                                        <a href=""><img class="icon2" src="https://img.icons8.com/carbon-copy/100/000000/phone.png"></a>
+                                        <a href=""><img class="icon" src="https://img.icons8.com/ios/50/000000/video-call.png"></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="ofline">
+                            <div class="title2"><p class="circle estatus"></p> Offline</div>
+                            <div class="usuarios">
+                                    <div class="persona usuario1">
+                                            <p class="circle estatus ch green"></p>
+                                            <a href=""><img class="icon3" src="/img/css/fb/persona_3.jpg" alt="Imagen de perfil"></a>
+                                            <p class="nombre">Melisa Smith</p>
+                                            <a href=""><img class="icon2" src="https://img.icons8.com/carbon-copy/100/000000/phone.png"></a>
+                                            <a href=""><img class="icon" src="https://img.icons8.com/ios/50/000000/video-call.png"></a>
+                                    </div>
+                                    <div class="persona usuario2">
+                                            <p class="circle estatus ch green"></p>
+                                            <a href=""><img class="icon3" src="/img/css/fb/persona_5.jpg" alt="Imagen de perfil"></a>
+                                            <p class="nombre">Melisa Smith</p>
+                                            <a href=""><img class="icon2" src="https://img.icons8.com/carbon-copy/100/000000/phone.png"></a>
+                                            <a href=""><img class="icon" src="https://img.icons8.com/ios/50/000000/video-call.png"></a>
+                                    </div>
+                                    <div class="persona usuario3">
+                                            <p class="circle estatus ch ambar"></p>
+                                            <a href=""><img class="icon3" src="/img/css/fb/persona_7.jpg" alt="Imagen de perfil"></a>
+                                            <p class="nombre">Melisa Smith</p>
+                                            <a href=""><img class="icon2" src="https://img.icons8.com/carbon-copy/100/000000/phone.png"></a>
+                                            <a href=""><img class="icon" src="https://img.icons8.com/ios/50/000000/video-call.png"></a>
+                                    </div>
+                                    <div class="persona usuario4">
+                                            <p class="circle estatus ch ambar"></p>
+                                            <a href=""><img class="icon3" src="/img/css/fb/persona_1.jpg" alt="Imagen de perfil"></a>
+                                            <p class="nombre">Melisa Smith</p>
+                                            <a href=""><img class="icon2" src="https://img.icons8.com/carbon-copy/100/000000/phone.png"></a>
+                                            <a href=""><img class="icon" src="https://img.icons8.com/ios/50/000000/video-call.png"></a>
+                                    </div>
+                                </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        // sirve para insertar iconos de https://feathericons.com/
+        feather.replace();
+        $(document).ready(function(){
+            let alto=$(window).height();
+            let ancho=$(window).width();
+            tamañoPantalla(alto, ancho);
+        });
+        // detectar click en cualquier lugar de la pantalla
+        $(document).click(function(el){
+            // console.log(el.currentTarget());
+            esconderMenu();
+        });
+
+        /* funcionalidad del menú*/
+        $(".fb .icono-perfil .drop-menu ul").on('click', 'li', function(e){
+            e.stopPropagation();
+            let li = $(this);
+            $(".fb .icono-perfil .drop-menu ul li").removeClass('selected');
+            li.addClass('selected');
+            console.log(li.attr('class'));
+            $(".fb .cuerpo .center").removeClass('visible');
+            $(".fb .cuerpo .left").removeClass('visible');
+            $(".fb .cuerpo .right").removeClass('visible');
+            // $(".fb .header .perfil .iconos").css('opacity', '0');
+            if (li.hasClass('menu')) {
+                $(".fb .cuerpo .left").addClass('visible');
+                // $(".fb .cuerpo .left").fadeIn();
+            }else if(li.hasClass('stories')){
+                $(".fb .cuerpo .right").addClass('visible');
+                
+            }else if(li.hasClass('feed')){
+                // $(".fb .header .perfil .iconos").css('opacity', '1');
+                
+            }
+            esconderMenu();
+        });
+        $(".icono-perfil").on("click",'.icon3, .nombre', function(e){
+            e.stopPropagation();
+            let drop_menu = $('.drop-menu');
+            $(".fb .header .perfil .iconos").css('opacity', '0');
+            if (drop_menu.is(':visible')) {
+                esconderMenu();
+                $(".fb .header .perfil .icono-perfil .forPhone").removeClass('forPhone-show');
+                $(".fb .header .perfil .icono-perfil .divide").removeClass('divide-show');
+            } else {
+                drop_menu.fadeIn();
+                $(".fb .cuerpo").addClass('onBlurCss');
+                $(".fb .header .perfil .icono-perfil .forPhone").addClass('forPhone-show');
+                $(".fb .header .perfil .icono-perfil .divide").addClass('divide-show');
+            }
+        });
+        function esconderMenu(){
+            // if($(".fb .icono-perfil .drop-menu ul li ").hasClass('selected'))
+            $(".fb .header .perfil .iconos").css('opacity', '1');
+            $('.drop-menu').fadeOut();
+            //le ponermos un fondo difuminado a toda la pantalla cuando el menú esta activo
+            $(".fb .cuerpo").removeClass('onBlurCss');
+        }
+        /* Detectar click y blur del input search */
+        $(".fb .header .search").on('click', function(){
+            let search = $(".fb .header .search");
+            console.log(search.hasClass('menorA100'), search.attr('class'));
+            if (search.hasClass('menorA100')) {
+                search.addClass('focusSearch');
+                $(".fb .header .logo").fadeOut();
+                $("#input_search").focus();
+            }
+        });
+        $("#input_search").on('blur', function(){
+            let search = $(".fb .header .search");
+            if (search.hasClass('menorA100')) {
+                search.removeClass('focusSearch');
+                setTimeout(function(){
+                    $(".fb .header .logo").fadeIn("slow", "swing");
+                }, 800);
+            }
+        });
+        
+        /* Detectar el click en el botón Share */
+        $("#btn_share").on('click', function(e){
+            let content = $("#input-estatus").text();
+            if (content !== '') {
+                let publicaciones = $(".fb .cuerpo .center .publicaciones");
+                let publicacion = 
+                '<div class="publicacion shadow">'+
+                    '<div class="head2">'+
+                            '<a href=""><img class="icon4" src="/img/css/fb/perfil2.jpg" alt="Imagen de perfil"></a>'+
+                            '<div class="datos">'+
+                                '<p class="nombre">Bianka</p>'+
+                                '<p class="last connection">now</p>'+
+                            '</div>'+
+                            '<i class="right-float" data-feather="more-horizontal"></i>'+
+                    '</div>'+
+                    '<div class="content">'+
+                        '<div class="texto" >'+
+                                content+
+                        '</div>'+
+                    '</div>'+
+                    '<div class="footer">'+
+                        '<a href="">'+
+                            '<img class="mini" src="https://img.icons8.com/pastel-glyph/64/000000/facebook-like.png">Like'+
+                        '</a>'+
+                        '<a href="">'+
+                            '<img class="mini" src="https://img.icons8.com/small/32/000000/speech-bubble-with-dots.png">Comment'+
+                        '</a>'+
+                        '<a href="">'+
+                            '<img class="mini" src="https://img.icons8.com/ios/50/000000/right2.png">Share'+
+                        '</a>'+
+                    '</div>'+
+                '</div>';
+                publicaciones.prepend(publicacion);
+                $("#input-estatus").empty();
+            }
+        });
+
+        /* Detectar el resizing de la pantalla*/
+        $(window).resize(function(){
+            //aqui el codigo que se ejecutara cuando se redimencione la ventana
+            var alto=$(window).height();
+            var ancho=$(window).width();
+            tamañoPantalla(alto, ancho);
+        });
+        /* Cambiar clases al input search, para poder distinguir entre varios tamaños de pantalla para diferentes cosas. */
+        function tamañoPantalla(alto, ancho){
+            let search = $(".fb .header .search");
+            if (ancho < 1000) {
+                search.addClass('menorA100');
+            }else{
+                search.removeClass('menorA100');
+            }
+        }
+    </script>
+</body>
+</html>

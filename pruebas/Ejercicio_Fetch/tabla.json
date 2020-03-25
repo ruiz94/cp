@@ -1,0 +1,32 @@
+[
+    {
+        "id": 1, 
+        "first": "Maria",
+        "last": "Tovar",
+        "correo": "mari@mail.com"
+    },
+    {
+        "id": 2,
+        "first": "Jose",
+        "last": "Pérez",
+        "correo": "jose@mail.com"
+    },
+    {
+        "id": 3,
+        "first": "Antonio",
+        "last": "Ramírez",
+        "correo": "tony@mail.com"
+    },
+    {
+        "id": 4,
+        "first": "Ramona",
+        "last": "Cruz",
+        "correo": "ramona@mail.com"
+    },
+    {
+        "id": 5,
+        "first": "Alberto",
+        "last": "Torres",
+        "correo": "pedro@mail.com"
+    }
+]

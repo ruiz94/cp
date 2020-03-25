@@ -1,0 +1,161 @@
+body {
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  overflow: hidden;
+  margin: 0;
+  position: absolute;
+}
+
+.btns {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+.btns .content {
+  display: flex;
+  width: 80%;
+  margin: auto;
+  justify-content: space-between;
+}
+.btns .content .btn {
+  cursor: pointer;
+}
+.btns .content .nombre {
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+}
+.btns .content .nombre .num {
+  padding-left: 5px;
+}
+
+.sl.on {
+  width: 100%;
+  left: 0;
+}
+
+.slider-1 {
+  width: 0%;
+  height: 90vh;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  left: 0;
+  transition: all 0.5s;
+}
+.slider-1 .content {
+  width: 90%;
+  display: flex;
+  margin: auto;
+  height: 100vh;
+}
+.slider-1 .content .slides {
+  display: flex;
+  width: 1050px;
+  overflow: hidden;
+  margin: auto;
+}
+.slider-1 .content .slides .cards {
+  display: flex;
+  animation: mover 10s infinite cubic-bezier(0.22, 0.61, 0.36, 1);
+  position: relative;
+}
+.slider-1 .content .card img {
+  width: 300px;
+  height: 400px;
+  margin: 0 25px;
+  transition: all 0.5s;
+}
+
+@keyframes mover {
+  0% {
+    left: 0;
+  }
+  40% {
+    left: -350px;
+  }
+  80% {
+    left: -700px;
+  }
+  100% {
+    left: 0;
+  }
+}
+.slider-2 {
+  width: 0%;
+  height: 90vh;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  left: 0;
+  transition: all 0.5s;
+}
+.slider-2 .content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 90vh;
+}
+.slider-2 .content .slides {
+  width: 60%;
+  position: relative;
+}
+.slider-2 .content .slides .cards {
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+.slider-2 .card img {
+  width: 100%;
+  height: 100%;
+}
+.slider-2 .card {
+  width: 300px;
+  height: 400px;
+  margin: 0 25px;
+  transition: all 0.5s;
+  position: absolute;
+  opacity: 0;
+  left: 260px;
+}
+.slider-2 .card .num {
+  display: block;
+  width: 100%;
+  text-align: center;
+  transition: opacity 0.5s;
+  opacity: 0;
+}
+.slider-2 .card.on {
+  opacity: 1;
+  left: 260px;
+  transition: all 1s;
+}
+.slider-2 .card.on .num {
+  opacity: 1;
+}
+.slider-2 .card.left {
+  width: 220px;
+  height: 300px;
+  opacity: 1;
+  left: 0;
+  z-index: 2;
+}
+.slider-2 .card.right {
+  width: 220px;
+  height: 300px;
+  opacity: 1;
+  left: 600px;
+  right: 0;
+  z-index: 2;
+}
+.slider-2 .arrow {
+  height: 400px;
+  width: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+/*# sourceMappingURL=estilos.css.map */

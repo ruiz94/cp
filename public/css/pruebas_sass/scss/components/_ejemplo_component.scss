@@ -1,0 +1,7 @@
+div.sass{
+    background-color: $color_fondo;
+    @include cuadro;
+}
+div.sass.dos{
+    background-color: $color_fondo2;
+}

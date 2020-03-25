@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- <title></title> -->
+    <style>
+        body{
+            background-color: #EFD092;
+        }
+        .producto .close{
+            width: 20px;
+            height: 20px;
+            position: absolute;
+            right: 0;
+            top: 0;
+            padding: 2px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-bottom-left-radius: 0;
+            border: 2px solid #b7405e;
+            border-top: 0;
+            border-right: 0;
+            cursor: pointer;
+            transition: all .5s;
+        }
+        .contenido {
+            position: relative;
+            top: 20px;
+            /* background-color: aliceblue; */
+            padding: 15px;
+        }
+
+        .titulo {
+            font-size: 20px;
+            color: #b7405e;
+        }
+
+        .titulo::after {
+            content: '';
+            width: 100%;
+            height: 2px;
+            display: block;
+            background-color: #b7405e;
+            margin-bottom: 10px;
+        }
+
+        .form {
+            padding: 10px;
+            color: #b7405e;
+        }
+
+        .form div label {/* width: 100px !important; */display: flex;}
+
+        .form div {
+            margin-top: 10px;
+        }
+
+        .form div input {
+            width: 95%;
+            padding: 10px 5px 10px 20px;
+            border: none;
+            border-radius: 5px;
+            outline: none;
+            font-size: 20px;
+            color: #86530f;
+        }
+
+        .btn-submit {
+            display: flex;
+            justify-content: center;
+        }
+
+        button#submit {
+            border: none;
+            width: 120px;
+            height: 50px;
+            font-size: 15px;
+            background-color: #b7405e;
+            color: #EFD092;
+            font-weight: bold;
+            margin-top: 10px;
+            border-radius: 0px;
+            transition: all .5s;
+            cursor: pointer;
+        }
+
+        button#submit:hover {
+            border-radius: 40px;
+        }
+
+        .producto .close:hover {
+            border-bottom-left-radius: 15px;
+        }
+        .form .desc input {font-size: 15px;padding: 15px 5px 15px 20px;}
+        .form div input::-webkit-inner-spin-button, .form div input::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+        }
+    </style>
+</head>
+<body>
+    <section class="producto">
+        <span class="close" id="closeWidow">X</span>
+        <div class="contenido">
+            <div class="titulo">Nuevo Produucto</div>
+            <div class="form">
+                <div class="nombre">
+                    <label for="nombre">Nombre:</label>
+                    <input type="text" name="nombre" id="nombre">
+                </div>
+                <div class="precio">
+                    <label for="precio">Precio:</label>
+                    <input type="number" name="precio" id="precio">
+                </div>
+                <div class="desc">
+                    <label for="desc">Descripción:</label>
+                    <input type="text" name="desc" id="desc">
+                </div>
+                <div class="btn-submit">
+                    <button id="submit">Guardar</button>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script src="../scripts/process_product.js"></script>
+</body>
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Object-oriented JavaScript example</title>
+  </head>
+
+  <body>
+    <p>This example requires you to enter commands in your browser's JavaScript console (see <a href="https://developer.mozilla.org/en-US/docs/Learn/Common_questions/What_are_browser_developer_tools">What are browser developer tools</a> for more information).</p>
+
+  </body>
+
+    <script>
+    /* Crear objeto y retorna el objeto ( manear no convencional )*/
+    function crearNuevaPersona(nombre) {
+      var obj = {};
+      obj.nombre = nombre;
+      obj.saludar = function(){
+        alert('Hola! Yo soy '+ this.nombre +'.');
+      }
+      return obj;
+    }
+    /* crear objeto con la ayuda de JS con un constructor ( new ) */
+    function Person(name) {
+      this.name = name;
+      this.greeting = function() {
+        alert('Hi! I\'m ' + this.name + '.');
+      };
+    }
+
+    var person1 = new Person('Bob');
+    var person2 = new Person('Sarah');
+
+    /* final Persona() constructor function */
+    function Persona(first, last, age, gender, interests) {
+      this.name = {
+        'first': first,
+        'last' : last
+      };
+      this.age = age;
+      this.gender = gender;
+      this.interests = interests;
+      this.bio = function() {
+        var ints = '';
+        interests.forEach(function(int, i){
+          let lt = interests.length;
+          ints += int + (lt-1 == i? '': ( i >= 0 && i != lt-2 ? ', ':' and ') );
+        });
+        alert(this.name.first + ' ' + this.name.last + ' is ' + this.age +
+        ' years old. '+(this.gender == 'male'? 'He':'She')+' likes ' + ints +'.');
+      };
+      this.greeting = function() {
+        alert('Hi! I\'m ' + this.name.first + '.');
+      };
+    }
+    var person3 = new Persona('Bob', 'Smith', 32, 'male', ['music', 'skiing', 'dance', 'skating', 'cooking']);
+    var person4 = new Persona('Jassy', 'Boot', 24, 'female', ['teaching', 'cooking', 'dancing']);
+
+    /* Otra manera de crear un objeto */
+    var person5 = new Object({
+      name: 'Chris',
+      age: 38,
+      greeting: function() {
+        alert('Hi! I\'m ' + this.name + '.');
+      }
+    });
+    </script>
+</html>

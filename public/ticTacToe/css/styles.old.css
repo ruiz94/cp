@@ -1,0 +1,260 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.contenedor {
+    width: 80%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    overflow: hidden;
+}
+
+.iniciar {
+    width: 230px;
+    border: 1px solid black;
+    height: 300px;
+    padding: 50px 20px;
+    box-sizing: border-box;
+    position: relative;
+    border-radius: 10px;
+    background-color: white;
+    transition: all .5s;
+    left: -700px;
+    opacity: 0;
+}
+.iniciar.show{
+    /* left: 280px; */
+    left: 25%;
+    opacity: 1;
+}
+
+.iniciar input {
+    border: 1px solid rgba(0,0,0,0.50);
+    border-radius: 5px;
+    padding: 5px 10px;
+}
+
+.iniciar input:focus {
+    outline-color: #000000;
+    border-radius: 0px;
+    border: 1px solid;
+}
+
+.iniciar > div {
+    margin: 15px 0;
+}
+.iniciar .jugar {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    left: 0;
+}
+#jugar{
+    border: 1px solid;
+    width: 100px;
+    padding: 5px;
+    font-size: 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: white;
+    transition: all .5s;
+}
+#jugar:hover {
+    background-color: rgba(128, 128, 128, 0.31);
+}
+.iniciar p {
+    font-family: 'Quicksand', sans-serif;
+    font-size: 18px;
+}
+.iniciar .codigo span {
+    font-size: 12px;
+}
+.iniciar:before {
+    content: '';
+    position: absolute;
+    height: 120px;
+    width: 100px;
+    background-color: rgba(0,0,0,0.10);
+    bottom: 0;
+    right: -31px;
+    transform: skewX(-30deg);
+    z-index: -1;
+}
+.partida {
+    border: 1px solid rgba(0,0,0,0.1);
+    width: 60%;
+    position: relative;
+    left: 80%;
+    padding: 20px;
+    box-sizing: border-box;
+    transition: all .7s;
+    max-width: 500px;
+    min-width: 360px;
+}
+.partida.show {
+    left: -150px;
+    
+}
+
+.stats {
+    display: flex;
+    justify-content: space-between;
+}
+.tablero {
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+}
+
+.tablero .col {
+    width: 100px;
+    height: 100px;
+    margin: 5px;
+    border-radius: 10px;
+    background-color: #78bec5;
+    cursor: pointer;
+    position: relative;
+}
+.tablero .col.equis:not(.mark):hover, .tablero .cero.col:not(.mark):hover {
+    background-color: rgba(0, 0, 0, 0.33);
+    transition: all .5s;
+}
+.tablero .col.equis:not(.mark):before,.tablero .col.equis:not(.mark):after, .tablero .cero.col:not(.mark):hover:before, .tablero .cero.col.mark:before,.tablero .cero.col.mark:after, .tablero .col.equis.mark:after, .tablero .col.equis.mark:before{
+    content: '';
+    position: absolute;
+    background-color: white;
+    transition: all .5s;
+}
+.tablero .col.equis:not(.mark):hover:after, .tablero .col.equis.mark:after{
+    transform: rotate(45deg);
+}
+.tablero .col.equis:not(.mark):hover:before, .tablero .col.equis.mark:before{
+    transform: rotate(-45deg);
+}
+.tablero .col.equis:not(.mark):hover:before,.tablero .col.equis:not(.mark):hover:after, .tablero .col.equis.mark:before, .tablero .col.equis.mark:after {
+    width: 80%;
+    height: 10px;
+    left: 10px;
+    top: 50px;
+    border-radius: 10px;
+}
+.tablero .cero.col:not(.mark):hover:before, .tablero .cero.col.mark:before, .tablero .cero.col.mark:after{
+    left: 10px;
+    top: 10px;
+    width: 60%;
+    height: 60%;
+    border-radius: 100%;
+    background-color: transparent;
+    border: 10px solid white;
+}
+.tablero .cero.col.mark{
+    background-color: #ECA72C;
+    pointer-events: none;
+}
+.tablero .col.equis.mark {
+    background-color: #EB4511;
+    pointer-events: none;
+}
+.tablero .cero.col.mark:before{
+    box-shadow: inset 0 0 15px -13px;
+}
+.tablero .cero.col.mark:after{
+    box-shadow:  0 0 15px -13px;
+}
+.tablero .col.equis.mark:before, .tablero .col.equis.mark:after{
+    box-shadow: 0 0 20px -3px;
+}
+.partida .stats .nombre, .partida .stats .titu{
+    font-family: 'Amatic SC', cursive;
+    position: relative;
+    font-size: 25px;
+}
+.partida .stats .nombre.turno:after {
+    content: '';
+    height: 2px;
+    position: absolute;
+    width: 100%;
+    background-color: green;
+    left: 0;
+}
+.partida .stats .nombre:after {
+    content: '';
+    height: 2px;
+    position: absolute;
+    width: 100%;
+    background-color: red;
+    left: 0;
+}
+.tablero.stop{
+    pointer-events: none;
+}
+@media (max-width: 600px){
+    .iniciar.show{
+        /* left: 280px; */
+        left: 40%;
+    }
+}
+.winer{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.1);
+    opacity: 0;
+    pointer-events: none;
+    display: flex;
+    align-items: center;
+    z-index: 5;
+}
+.winer.show {
+    pointer-events: all;
+    opacity: 1;
+    transition: opacity 1s;
+}
+.contenedor .winer.show ~ div:not(.winer){
+    filter: blur(3px);
+}
+.winer .banda{
+    display: flex;
+    width: 100%;
+    height: 100px;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 40px;
+    cursor: pointer;
+}
+.winer .banda.loser {
+    background-color: #ff572273;
+}
+.winer .banda.winner {
+    background-color: rgba(139, 195, 74, 0.63);
+}
+.winer .banda.empate {
+    background-color: rgba(255, 193, 7, 0.53);
+}
+.winer .banda.NoValido {
+    background-color: rgba(0,0,0);
+}
+.winer .banda.salio {
+    background-color: gray;
+}
+.winer .banda .texto{
+    position: relative;
+}
+/* .winer .banda .los, .winer .banda .win, .winer .banda .emp, .winer .banda .sal{
+    display: none;
+}
+.winer .banda.winner .win, .winer .banda.empate .emp, .winer .banda.loser .los, .winer .banda.salio .sal{
+    display: flex;
+} */
+.clock{
+    padding-left: 5px;
+    color: red;
+}
+

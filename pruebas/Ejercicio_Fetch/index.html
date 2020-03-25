@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <title>Fetch!</title>
+</head>
+
+<body>
+    <!-- Breadcrum -->
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/">Home</a></li>
+            <li class="breadcrumb-item" aria-current="page" >Fetch API</li>
+        </ol>
+    </nav>
+    <div class="container my-5 text-center">
+        <button class="btn btn-danger w-100" onclick="traer2()">Obtener</button>
+        <div class="mt-3" id="contenido2">
+            <!-- <img src="https://img.rankedboost.com/wp-content/plugins/super-smash-bros-ultimate/assets/character-images-main/Kirby_SSBU.png" width="100px" alt="" class="img-fluid rounded-circle">
+            <p>Nombre: Kirby</p> -->
+        </div>
+    </div>
+    <div class="container my-5 text-center">
+        <button class="btn btn-danger w-100" onclick="traer()">Obtener</button>
+        <div class="mt-5" id="contenido">
+            <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">First</th>
+                    <th scope="col">Last</th>
+                    <th scope="col">Mail</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  
+                </tbody>
+              </table>
+        </div>
+    </div>
+    <script>
+        var contenido = document.querySelector('#contenido');
+        var contenido2 = document.querySelector('#contenido2');
+        /* generar usuarios aleatorios */
+        
+        function traer2() {
+            fetch('https://randomuser.me/api/')
+                .then(res => res.json())
+                .then(data => {
+                    console.log(data.results[0].email);
+                    contenido2.innerHTML =
+                        `<img src="${data.results[0].picture.large}" width="100px" alt="" class="img-fluid rounded-circle">
+                    <p>Nombre: ${data.results[0].name.last}</p>`
+                })
+
+        }
+        
+
+        function traer() {
+            fetch('getTabla').then(res => res.json()  )
+            .then(jsx => {
+                tabla(jsx);
+            })
+                
+        }
+        function tabla(datos){
+            console.log("function tabla()");
+            var cont_tab = '';
+            for(let valor of datos){
+                cont_tab +=
+                // contenido.querySelector("tbody").innerHTML +=
+                `
+                <tr>
+                    <th scope="row">${valor.id}</th>
+                    <td>${valor.first}</td>
+                    <td>${valor.last}</td>
+                    <td>${valor.correo}</td>
+                </tr>
+                `;
+            }
+            contenido.querySelector("tbody").innerHTML = cont_tab;
+                // datos.
+        }
+    </script>
+</body>
+
+</html>

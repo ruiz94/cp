@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Loteria Mexicana</title>
+    <link href="https://fonts.googleapis.com/css?family=Dosis&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/loteria/css/styles.css">
+</head>
+<body>
+    <!-- <script>
+        require('./public/js/connection.js')
+    </script> -->
+    <div class="loteria">
+        <div class="inicio">
+            <div class="img">
+                <img src="https://www.sipuebla.com/spanishreader/assets/img/loteria-mexicana.jpg" alt="">
+            </div>
+            <div class="contenedor_btn">
+                <div class="mod cont_unirse">
+                    <span onclick="cerrar_modal('cont_unirse')"><</span>
+                    <div class="btn" onclick="open_modal('cont_unirse')">Unirse a partida</div>
+                    <div class="sala"><input type="text" name="" id="numSala" placeholder="Ingresa el número de sala"></div>
+                    <div class="btn_unirse" onclick="cartaJuego.inicio(1)">Unirse</div>
+                </div>
+                <div class="mod cont_nuevo">
+                    <span onclick="cerrar_modal('cont_nuevo')"><</span>
+                    <div class="btn" onclick="open_modal('cont_nuevo')">Nueva Partida</div>
+                    <div class="nombre"><input type="text" name="" id="nombreSala" placeholder="Ingresa un nombre"></div>
+                    <div class="btn_unirse" onclick="cartaJuego.inicio(0)">Crear</div>
+                </div>
+            </div>
+        </div>
+        <div class="cuerpo">
+            <div class="header">
+                <div class="stats">
+
+                    <div class="btns_reiniciar" onclick="con.send({'evento':'reiniciar'})">
+                        Reiniciar
+                    </div>
+                    <div class="nombre_sala">
+                        Nombre Sala: <span>---</span>
+                    </div>
+                    <div class="numero_sala">
+                        Número Sala: <span>---</span>
+                    </div>
+                    <div class="jugadores">
+                        Jugadores: <span>0</span>
+                    </div>
+                    <div class="estatus">
+                        Estatus: <span>---</span>
+                    </div>
+                    <div class="jugador">
+                        Jugador: <span>---</span>
+                    </div>
+                </div>
+                <div class="cartas_cantadas"></div>
+            </div>
+            <div class="elegir">
+                <div class="contenedor_carta">
+                    <div class="carta_juego">
+    
+                        <div class=" carts" id="dropIt1" ondragenter="return dragEnter(event)" ondrop="return dragDrop(event)" ondragover="return dragOver(event)"></div>
+                        <div class=" carts" id="dropIt2" ondragenter="return dragEnter(event)" ondrop="return dragDrop(event)" ondragover="return dragOver(event)"></div>
+                        <div class=" carts" id="dropIt3" ondragenter="return dragEnter(event)" ondrop="return dragDrop(event)" ondragover="return dragOver(event)"></div>
+                        <div class=" carts" id="dropIt4" ondragenter="return dragEnter(event)" ondrop="return dragDrop(event)" ondragover="return dragOver(event)"></div>
+                        <!-- <div class="fila">
+                        </div> -->
+                        <div class=" carts" id="dropIt5" ondragenter="return dragEnter(event)" ondrop="return dragDrop(event)" ondragover="return dragOver(event)"></div>
+                        <div class=" carts" id="dropIt6" ondragenter="return dragEnter(event)" ondrop="return dragDrop(event)" ondragover="return dragOver(event)"></div>
+                        <div class=" carts" id="dropIt7" ondragenter="return dragEnter(event)" ondrop="return dragDrop(event)" ondragover="return dragOver(event)"></div>
+                        <div class=" carts" id="dropIt8" ondragenter="return dragEnter(event)" ondrop="return dragDrop(event)" ondragover="return dragOver(event)"></div>
+                        <!-- <div class="fila">
+                        </div> -->
+                        <div class=" carts" id="dropIt9" ondragenter="return dragEnter(event)" ondrop="return dragDrop(event)" ondragover="return dragOver(event)"></div>
+                        <div class=" carts" id="dropIt10" ondragenter="return dragEnter(event)" ondrop="return dragDrop(event)" ondragover="return dragOver(event)"></div>
+                        <div class=" carts" id="dropIt11" ondragenter="return dragEnter(event)" ondrop="return dragDrop(event)" ondragover="return dragOver(event)"></div>
+                        <div class=" carts" id="dropIt12" ondragenter="return dragEnter(event)" ondrop="return dragDrop(event)" ondragover="return dragOver(event)"></div>
+                        <!-- <div class="fila">
+                        </div> -->
+                        <!-- <div class="fila">
+                        </div> -->
+                        <div class=" carts" id="dropIt13" ondragenter="return dragEnter(event)" ondrop="return dragDrop(event)" ondragover="return dragOver(event)"></div>
+                        <div class=" carts" id="dropIt14" ondragenter="return dragEnter(event)" ondrop="return dragDrop(event)" ondragover="return dragOver(event)"></div>
+                        <div class=" carts" id="dropIt15" ondragenter="return dragEnter(event)" ondrop="return dragDrop(event)" ondragover="return dragOver(event)"></div>
+                        <div class=" carts" id="dropIt16" ondragenter="return dragEnter(event)" ondrop="return dragDrop(event)" ondragover="return dragOver(event)"></div>
+                    </div>
+                </div>
+                <div class="modal">
+                    <div class="scroll">
+                        <div class="baraja carts" id="holder" ondragenter="return dragEnter(event)" ondrop="return dragDrop(event)" ondragover="return dragOver(event)">
+                            <img src="/loteria/img/1.jpg" onClick="agregarCarta(this)" draggable="true" ondragstart="return dragStart(event)" id="img1" class="carta">
+                            <img src="/loteria/img/2.jpg" onClick="agregarCarta(this)" draggable="true" ondragstart="return dragStart(event)" id="img2" class="carta">
+                            <img src="/loteria/img/3.jpg" onClick="agregarCarta(this)" draggable="true" ondragstart="return dragStart(event)" id="img3" class="carta">
+                            <img src="/loteria/img/4.jpg" onClick="agregarCarta(this)" draggable="true" ondragstart="return dragStart(event)" id="img4" class="carta">
+                            <img src="/loteria/img/5.jpg" onClick="agregarCarta(this)" draggable="true" ondragstart="return dragStart(event)" id="img5" class="carta">
+                            <img src="/loteria/img/6.jpg" onClick="agregarCarta(this)" draggable="true" ondragstart="return dragStart(event)" id="img6" class="carta">
+                            <img src="/loteria/img/7.jpg" onClick="agregarCarta(this)" draggable="true" ondragstart="return dragStart(event)" id="img7" class="carta">
+                            <img src="/loteria/img/8.jpg" onClick="agregarCarta(this)" draggable="true" ondragstart="return dragStart(event)" id="img8" class="carta">
+                            <img src="/loteria/img/9.jpg" onClick="agregarCarta(this)" draggable="true" ondragstart="return dragStart(event)" id="img9" class="carta">
+                            <img src="/loteria/img/10.jpg" onClick="agregarCarta(this)" draggable="true" ondragstart="return dragStart(event)" id="img10" class="carta">
+                            <img src="/loteria/img/11.jpg" onClick="agregarCarta(this)" draggable="true" ondragstart="return dragStart(event)" id="img11" class="carta">
+                            <img src="/loteria/img/12.jpg" onClick="agregarCarta(this)" draggable="true" ondragstart="return dragStart(event)" id="img12" class="carta">
+                            <img src="/loteria/img/13.jpg" onClick="agregarCarta(this)" draggable="true" ondragstart="return dragStart(event)" id="img13" class="carta">
+                            <img src="/loteria/img/14.jpg" onClick="agregarCarta(this)" draggable="true" ondragstart="return dragStart(event)" id="img14" class="carta">
+                            <img src="/loteria/img/15.jpg" onClick="agregarCarta(this)" draggable="true" ondragstart="return dragStart(event)" id="img15" class="carta">
+                            <img src="/loteria/img/16.jpg" onClick="agregarCarta(this)" draggable="true" ondragstart="return dragStart(event)" id="img16" class="carta">
+                            <img src="/loteria/img/17.jpg" onClick="agregarCarta(this)" draggable="true" ondragstart="return dragStart(event)" id="img17" class="carta">
+                            <img src="/loteria/img/18.jpg" onClick="agregarCarta(this)" draggable="true" ondragstart="return dragStart(event)" id="img18" class="carta">
+                            <img src="/loteria/img/19.jpg" onClick="agregarCarta(this)" draggable="true" ondragstart="return dragStart(event)" id="img19" class="carta">
+                            <img src="/loteria/img/20.jpg" onClick="agregarCarta(this)" draggable="true" ondragstart="return dragStart(event)" id="img20" class="carta">
+                            <img src="/loteria/img/21.jpg" onClick="agregarCarta(this)" draggable="true" ondragstart="return dragStart(event)" id="img21" class="carta">
+                            <img src="/loteria/img/22.jpg" onClick="agregarCarta(this)" draggable="true" ondragstart="return dragStart(event)" id="img22" class="carta">
+                            <img src="/loteria/img/23.jpg" onClick="agregarCarta(this)" draggable="true" ondragstart="return dragStart(event)" id="img23" class="carta">
+                            <img src="/loteria/img/24.jpg" onClick="agregarCarta(this)" draggable="true" ondragstart="return dragStart(event)" id="img24" class="carta">
+                            <img src="/loteria/img/25.jpg" onClick="agregarCarta(this)" draggable="true" ondragstart="return dragStart(event)" id="img25" class="carta">
+                            <img src="/loteria/img/26.jpg" onClick="agregarCarta(this)" draggable="true" ondragstart="return dragStart(event)" id="img26" class="carta">
+                            <img src="/loteria/img/27.jpg" onClick="agregarCarta(this)" draggable="true" ondragstart="return dragStart(event)" id="img27" class="carta">
+                            <img src="/loteria/img/28.jpg" onClick="agregarCarta(this)" draggable="true" ondragstart="return dragStart(event)" id="img28" class="carta">
+                            <img src="/loteria/img/29.jpg" onClick="agregarCarta(this)" draggable="true" ondragstart="return dragStart(event)" id="img29" class="carta">
+                            <img src="/loteria/img/30.jpg" onClick="agregarCarta(this)" draggable="true" ondragstart="return dragStart(event)" id="img30" class="carta">
+                            <img src="/loteria/img/31.jpg" onClick="agregarCarta(this)" draggable="true" ondragstart="return dragStart(event)" id="img31" class="carta">
+                            <img src="/loteria/img/32.jpg" onClick="agregarCarta(this)" draggable="true" ondragstart="return dragStart(event)" id="img32" class="carta">
+                            <img src="/loteria/img/33.jpg" onClick="agregarCarta(this)" draggable="true" ondragstart="return dragStart(event)" id="img33" class="carta">
+                            <img src="/loteria/img/34.jpg" onClick="agregarCarta(this)" draggable="true" ondragstart="return dragStart(event)" id="img34" class="carta">
+                            <img src="/loteria/img/35.jpg" onClick="agregarCarta(this)" draggable="true" ondragstart="return dragStart(event)" id="img35" class="carta">
+                            <img src="/loteria/img/36.jpg" onClick="agregarCarta(this)" draggable="true" ondragstart="return dragStart(event)" id="img36" class="carta">
+                            <img src="/loteria/img/37.jpg" onClick="agregarCarta(this)" draggable="true" ondragstart="return dragStart(event)" id="img37" class="carta">
+                            <img src="/loteria/img/38.jpg" onClick="agregarCarta(this)" draggable="true" ondragstart="return dragStart(event)" id="img38" class="carta">
+                            <img src="/loteria/img/39.jpg" onClick="agregarCarta(this)" draggable="true" ondragstart="return dragStart(event)" id="img39" class="carta">
+                            <img src="/loteria/img/40.jpg" onClick="agregarCarta(this)" draggable="true" ondragstart="return dragStart(event)" id="img40" class="carta">
+                            <img src="/loteria/img/41.jpg" onClick="agregarCarta(this)" draggable="true" ondragstart="return dragStart(event)" id="img41" class="carta">
+                            <img src="/loteria/img/42.jpg" onClick="agregarCarta(this)" draggable="true" ondragstart="return dragStart(event)" id="img42" class="carta">
+                            <img src="/loteria/img/43.jpg" onClick="agregarCarta(this)" draggable="true" ondragstart="return dragStart(event)" id="img43" class="carta">
+                            <img src="/loteria/img/44.jpg" onClick="agregarCarta(this)" draggable="true" ondragstart="return dragStart(event)" id="img44" class="carta">
+                            <img src="/loteria/img/45.jpg" onClick="agregarCarta(this)" draggable="true" ondragstart="return dragStart(event)" id="img45" class="carta">
+                            <img src="/loteria/img/46.jpg" onClick="agregarCarta(this)" draggable="true" ondragstart="return dragStart(event)" id="img46" class="carta">
+                            <img src="/loteria/img/47.jpg" onClick="agregarCarta(this)" draggable="true" ondragstart="return dragStart(event)" id="img47" class="carta">
+                            <img src="/loteria/img/48.jpg" onClick="agregarCarta(this)" draggable="true" ondragstart="return dragStart(event)" id="img48" class="carta">
+                            <img src="/loteria/img/49.jpg" onClick="agregarCarta(this)" draggable="true" ondragstart="return dragStart(event)" id="img49" class="carta">
+                            <img src="/loteria/img/50.jpg" onClick="agregarCarta(this)" draggable="true" ondragstart="return dragStart(event)" id="img50" class="carta">
+                            <img src="/loteria/img/51.jpg" onClick="agregarCarta(this)" draggable="true" ondragstart="return dragStart(event)" id="img51" class="carta">
+                            <img src="/loteria/img/52.jpg" onClick="agregarCarta(this)" draggable="true" ondragstart="return dragStart(event)" id="img52" class="carta">
+                            <img src="/loteria/img/53.jpg" onClick="agregarCarta(this)" draggable="true" ondragstart="return dragStart(event)" id="img53" class="carta">
+                            <img src="/loteria/img/54.jpg" onClick="agregarCarta(this)" draggable="true" ondragstart="return dragStart(event)" id="img54" class="carta">
+                            
+                        </div>
+                    </div>
+                </div>
+                <div class="contenedor_boton">
+                    <div class="btn" onclick="cartaJuego.jugar()">Jugar</div>
+                </div>
+            </div>
+        </div>
+        
+        
+    </div>
+    <script src="/loteria/js/connection.js"></script>
+    <script src="/loteria/js/elegir_cartas.js"></script>
+</body>
+</html>

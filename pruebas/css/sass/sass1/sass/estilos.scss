@@ -1,0 +1,141 @@
+@import 'mixin';
+body{
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    overflow: hidden;
+    margin: 0;
+    position: absolute;
+}
+// seccion de los botónes del bottom
+.btns{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    .content{
+        display: flex;
+        width: 80%;
+        margin: auto;
+        justify-content: space-between;
+        .btn{
+            cursor: pointer;
+        }
+        .nombre{
+            font-size: 20px;
+            display: flex;
+            align-items: center;
+            .num{
+                padding-left: 5px;
+            }
+        }
+    }
+}
+.sl.on{
+    width: 100%;
+    left: 0;
+}
+// Slider 1
+.slider-1 {
+    @include slider;
+
+    .content{
+        width: 90%;
+        display: flex;
+        margin: auto;
+        height: 100vh;
+        
+        .slides{
+            display: flex;
+            width: 1050px;
+            overflow: hidden;
+            margin: auto;
+            
+            .cards{
+                display: flex;
+                animation: mover 10s infinite cubic-bezier(0.22, 0.61, 0.36, 1);
+                position: relative;
+            }
+        }
+        .card img{
+            @include card;
+        }
+    }
+}
+$widthMove: -350px;
+@keyframes mover{
+    0%{
+        left: 0;
+    }40%{
+        left: $widthMove * 1;
+    }80%{
+        left: $widthMove * 2;
+    }100%{
+        left: 0;
+    }
+}
+
+// slider 2
+.slider-2 {
+    @include slider;
+    .content{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 90vh;
+
+        .slides{
+            width: 60%;
+            position: relative;
+            .cards{
+                display: flex;
+                align-items: center;
+                overflow: hidden;
+            }
+        }
+    }
+    .card img{
+        width: 100%;
+        height: 100%;
+        
+    }
+    .card{
+        @include card;
+        position: absolute;
+        opacity: 0;
+        left: 260px;
+        .num{
+            display: block;
+            width: 100%;
+            text-align: center;
+            transition: opacity .5s;
+            opacity: 0;
+        }
+    }
+    .card.on{
+        opacity: 1;
+        left: 260px;
+        transition: all 1s;
+        .num{
+            opacity: 1;
+        }
+    }
+    .card.left{
+        @include cardSmall;
+        opacity: 1;
+        left: 0;
+        z-index: 2;
+    }
+    .card.right{
+        @include cardSmall;
+        opacity: 1;
+        left: 600px;
+        right: 0;
+        z-index: 2;
+    }
+    .arrow{
+        @include slide;
+    }
+}
+
+
+

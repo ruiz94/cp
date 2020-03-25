@@ -1,0 +1,237 @@
+html, body {
+  overflow: hidden;
+  margin: 0;
+}
+
+.loteria {
+  height: 100vh;
+  width: 100%;
+  margin: auto;
+  position: relative;
+  min-width: 570px;
+}
+.loteria .cuerpo {
+  position: relative;
+  height: 100%;
+  width: 100%;
+}
+.loteria .cuerpo .header {
+  box-shadow: 21px 0px 33px 5px black;
+  height: 100vh;
+  color: #263238;
+  width: 250px;
+  position: absolute;
+  right: 0;
+  top: 0;
+  padding: 0 10px;
+  box-sizing: border-box;
+  font-family: "Dosis", sans-serif;
+}
+.loteria .cuerpo .header .stats {
+  height: 250px;
+  border-bottom: 4px dotted gray;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+.loteria .cuerpo .header .btns_reiniciar {
+  background-color: #ff5722;
+  width: 80px;
+  height: 25px;
+  cursor: pointer;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+  color: white;
+  display: none;
+}
+.loteria .cuerpo .header .btns_reiniciar.visible {
+  display: flex;
+}
+.loteria .cuerpo .elegir {
+  display: flex;
+  position: relative;
+  height: 100%;
+  justify-content: center;
+  width: calc(100% - 250px);
+}
+.loteria .cuerpo .elegir .contenedor_carta {
+  width: 60%;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.loteria .cuerpo .elegir .contenedor_carta .carta_juego {
+  width: 400px;
+  border: 1px solid black;
+  height: 500px;
+  text-align: center;
+  min-width: 300px !important;
+  display: flex;
+  flex-wrap: wrap;
+}
+.loteria .cuerpo .elegir .contenedor_carta .carta_juego .carta {
+  width: calc(100% /5);
+  height: calc(100% /5);
+  display: inline-block;
+  padding: 10px;
+  position: relative;
+}
+.loteria .cuerpo .elegir .contenedor_carta .carta_juego .carts {
+  width: calc(25% - 8px);
+  height: calc(25% - 8px);
+  margin: 2px;
+  border: 2px dashed black;
+}
+.loteria .cuerpo .elegir .modal {
+  position: absolute;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.loteria .cuerpo .elegir .scroll {
+  width: 70%;
+  position: relative;
+  height: 80%;
+  background-color: white;
+  box-shadow: 0 0 61px -11px black;
+  border-radius: 13px;
+  padding: 29px;
+  box-sizing: border-box;
+}
+.loteria .cuerpo .elegir .baraja {
+  width: 100%;
+  position: relative;
+  height: 100%;
+  overflow-y: scroll;
+}
+.loteria .cuerpo .elegir .baraja .carta {
+  width: 80px;
+  height: 100px;
+  display: inline-block;
+  padding: 10px;
+  position: relative;
+  cursor: pointer;
+}
+.loteria .cuerpo .elegir .contenedor_boton {
+  position: absolute;
+  left: 20px;
+  bottom: 20px;
+}
+.loteria .cuerpo .elegir .contenedor_boton .btn {
+  background-color: #4DD0E1;
+  width: 100px;
+  height: 29px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+  transition: 0.3s all;
+}
+.loteria .cuerpo .elegir .contenedor_boton .btn:hover {
+  border: 1px solid #4DD0E1;
+  background-color: white !important;
+  color: #4DD0E1 !important;
+  box-shadow: 0px 0px 23px -7px #4DD0E1;
+}
+.loteria .inicio {
+  width: 80%;
+  margin: auto;
+  max-width: 600px;
+}
+.loteria .inicio .img {
+  margin: 10px;
+  border-radius: 30px;
+  overflow: hidden;
+}
+.loteria .inicio .img img {
+  width: 100%;
+  max-height: 400px;
+}
+.loteria .inicio .contenedor_btn {
+  width: 100%;
+}
+.loteria .inicio .contenedor_btn input {
+  border: 1px solid gray;
+  border-radius: 5px;
+  padding: 5px 10px;
+}
+.loteria .inicio .contenedor_btn .cont_unirse {
+  background-color: teal;
+}
+.loteria .inicio .contenedor_btn .cont_nuevo {
+  background-color: #FF5722;
+}
+.loteria .inicio .contenedor_btn .cont_unirse, .loteria .inicio .contenedor_btn .cont_nuevo {
+  position: relative;
+  height: 19px;
+  margin: 10px auto;
+  overflow: hidden;
+  width: 200px;
+  text-align: center;
+  border-radius: 10px;
+  color: white;
+  transition: all 0.5s;
+}
+.loteria .inicio .contenedor_btn .cont_unirse .btn, .loteria .inicio .contenedor_btn .cont_nuevo .btn {
+  cursor: pointer;
+}
+.loteria .inicio .contenedor_btn .cont_unirse span, .loteria .inicio .contenedor_btn .cont_nuevo span {
+  display: none;
+  position: absolute;
+  left: 5px;
+  top: 2px;
+  cursor: pointer;
+}
+.loteria .inicio .contenedor_btn .cont_unirse.grande, .loteria .inicio .contenedor_btn .cont_nuevo.grande {
+  height: 130px !important;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.loteria .inicio .contenedor_btn .cont_unirse.grande .btn, .loteria .inicio .contenedor_btn .cont_nuevo.grande .btn {
+  margin-top: 16px;
+  margin-bottom: -10px;
+  cursor: default;
+}
+.loteria .inicio .contenedor_btn .cont_unirse.grande span, .loteria .inicio .contenedor_btn .cont_nuevo.grande span {
+  display: flex;
+}
+.loteria .inicio .contenedor_btn .cont_unirse.grande .btn_unirse, .loteria .inicio .contenedor_btn .cont_nuevo.grande .btn_unirse {
+  cursor: pointer;
+  border: 1px solid white;
+  border-radius: 5px;
+  width: 80px;
+  height: 20px;
+}
+.loteria .inicio .contenedor_btn._cont_unirse .cont_nuevo {
+  height: 0px;
+}
+.loteria .inicio .contenedor_btn._cont_nuevo .cont_unirse {
+  height: 0px;
+}
+
+.loteria:not(.a_jugar) .header {
+  display: none;
+}
+.loteria:not(.a_jugar) .elegir {
+  display: none;
+}
+
+.loteria.a_jugar .inicio {
+  display: none;
+}
+
+.loteria.comenzo_juego .elegir .baraja {
+  display: none;
+}
+.loteria.comenzo_juego .contenedor_carta .carta {
+  cursor: pointer;
+}
+
+/*# sourceMappingURL=styles.css.map */

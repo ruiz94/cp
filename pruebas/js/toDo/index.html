@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>To Do </title>
+    <!-- Colocamos el icono de la página -->
+    <!-- <link rel="icon" type="image/png" href="https://img.icons8.com/color/48/000000/facebook-new.png" /> -->
+    <!-- <img src="https://img.icons8.com/color/48/000000/facebook-new.png"> -->
+    <!-- algunos iconos e imágenes son de icons8.com  -->
+    <!-- linearicons.com  -->
+    <link rel="stylesheet" href="https://cdn.linearicons.com/free/1.0.0/icon-font.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Livvic&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <style>
+        .contenedor.todo{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+        .contenedor.todo .segments{
+            width: 50%;
+            color: #00000091;
+            min-width: 230px;
+        }
+        .contenedor.todo .top.head h1{
+            font-size: -webkit-xxx-large;
+            color: #0000002b;
+        }
+        .contenedor.todo .top.head h1, .contenedor.todo .segments{
+            font-family: cursive;
+            font-style: oblique;
+            
+        }
+        .contenedor.todo .circle.lt{
+            cursor: pointer;
+        }
+        .contenedor.todo .close.icon{
+            float: right;
+            display: none;
+            cursor: pointer;
+        }
+    
+        .contenedor.todo .segments .task p{
+            font-size: 15px;
+            padding: 1px;
+            transition: font-size .3s, padding .3s, box-shadow .3s;
+        }
+        .contenedor.todo .segments .task p .line-through{
+            text-decoration: line-through;
+        }
+        .contenedor.todo .segments .task p:hover{
+            box-shadow: 16px 9px 26px -4px rgb(185, 187, 178);
+            /* margin: 10px 0px 10px 10px; */
+            font-size: 17px;
+            padding: 5px;
+        }
+        .contenedor.todo .segments .contenedor.input{
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+        }
+        .contenedor.todo .segments .contenedor.input .input{
+            width: 90%;
+            transition-duration: 1s;
+        }
+        .contenedor.todo .segments #deseleccionar{
+            cursor: pointer;
+            /* color: #00000069;
+            transition: transform 1s;
+            transition-duration: 1s !important; */
+        }
+        /* .contenedor.todo .segments #deseleccionar:hover{
+            transform: rotate(-380deg);
+        } */
+        .contenedor.todo .segments .bottom{
+            display: flex;
+            justify-content: space-between;
+        }
+        .contenedor.todo .segments .bottom .filters span{
+            padding-right: 30px;
+            cursor: pointer;
+        }
+        .contenedor.todo .segments .bottom .filters span:hover{
+                border-bottom: 1px solid #2196f3;
+                animation-name: estatus;
+                animation-duration: 1s;
+                animation-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
+                animation-fill-mode:forwards;
+            }
+        .contenedor.todo .segments .bottom .filters span.on{
+            border-bottom: 1px solid #2196f3;
+        }
+        .contenedor.todo .segments .tasks_vacias{
+            display: none;
+            justify-content: center;
+        }
+        .contenedor.todo .segments #enter_pin{
+            cursor: pointer;
+        }
+        @keyframes estatus{
+            0%{
+                width: 1%;
+            }
+            100%{
+                width: 100%;
+            }
+        }
+        @media screen and (max-width: 1000px) {
+            .contenedor.todo .segments .bottom{
+                position: absolute;
+                right: -130px;
+                display: table-row;
+                border: 1px solid #00000021;
+                top: 23px !important;
+                bottom: 36px !important;
+                min-height: 125px;
+                z-index: 2;
+            }
+            .contenedor.todo .segments .bottom .filters{
+                display: table-row;
+            }
+            .contenedor.todo .segments .bottom .left.stats{
+                margin-bottom: 20px;
+            }
+            .contenedor.todo .segments .bottom .filters span{
+                display: flex;
+            }
+            .contenedor.todo .segments .contenedor .input{
+                font-size: medium !important;
+            }
+            .contenedor.todo .segments #deseleccionar{
+                font-size: medium !important;
+            }
+        }
+    
+        @media screen and (max-width: 600px) {
+            .contenedor.todo .segments .bottom{
+                position: relative;
+                right: 0px;
+                display: block;
+                border: none;
+                top: 0px !important;
+                bottom: 0px !important;
+                min-height: 40px;
+            }
+            .contenedor.todo .segments .bottom .filters{
+                display: flex;
+            }
+            .contenedor.todo .segments .bottom{
+                display: flex;
+                justify-content: space-between;
+            }
+            .contenedor.todo .segments .contenedor .input{
+                font-size: smaller !important;
+            }
+            .contenedor.todo .segments #deseleccionar{
+                font-size: small !important;
+            }
+            .contenedor.todo .segments{
+                width: 75%;
+            }
+            .contenedor.todo .segments .bottom .filters span{
+                padding-right: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="contenedor todo">
+        <div class="top head">
+            <h1>To Do</h1>
+        </div>
+        <div class="ui tall stacked raised segment segments" id="todo" style="box-shadow: -10px 20px 20px 0px rgba(34,36,38,.15);">
+            <div class="ui segment contenedor input">
+                <i class="ui big angle down icon" id="deseleccionar"></i>
+                <div class="ui huge fluid icon input">
+                    <input id="input_task" type="text" placeholder="¿Que necesitas hacer?">
+                    <i id="enter_pin" class="thumbtack icon"></i>
+                </div>
+            </div>
+            <div class="ui segment task">
+                <!-- {{-- <p data-id='task_0'><i class="ui large circle outline icon lt"></i>Middle <i class="ui close icon"></i></p> --}} -->
+            </div>
+            <div class="tasks_vacias">
+                <h2 class="ui icon header">
+                    <i class="settings icon"></i>
+                    <div class="content">
+                        Lista de Tareas Vacia
+                        <div class="sub header">Animate a introducir tu primera tarea, !Es muy Fácil¡.</div>
+                    </div>
+                </h2>
+            </div>
+    
+            <div class="ui segment bottom">
+                <div class="left stats">
+                    Estatus
+                </div>
+                <div class="right filters">
+                    <span class="on all">Todos</span>
+                    <span class="active">Activos</span>
+                    <span class="complete">Completados</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            /* Creamos los detectores de movimiento sobre el elemento de la lista de tareas
+            *   y tambien inicializamos el click para los mismos elementos de la lista.
+            */
+            $(".contenedor.todo .segments .task").on('mouseover', 'p', function(){
+                let el = this.querySelector('.close.icon');
+                $(el).toggleClass("visible");
+            }).on('mouseout', 'p', function(){
+                let el = this.querySelector('.close.icon');
+                $(el).toggleClass("visible");
+            });
+                
+            $(".contenedor.todo .segments .task ").on('click', '.circle.lt', function(){
+                let el = $(this);
+                    
+                let id_padre = el.parent('p').attr('id');
+                if (el.hasClass('check')) {
+                    el.removeClass('check blue');
+                    el.siblings('span').removeClass('line-through');
+                    todo.cambiarEstatus(id_padre, 1)
+                } else {
+                    el.addClass('check blue');
+                    el.siblings('span').addClass('line-through');
+                    todo.cambiarEstatus(id_padre, 2)
+                }
+                todo.deleteList();
+                todo.changeFiltro();
+            });
+            $(".contenedor.todo .segments .task ").on('click', '.close.icon', function(){
+                let el = $(this);
+                let id_padre = el.parent('p').attr('id');
+                todo.deleteTask(id_padre);
+            });
+            $(".contenedor.todo .segments .bottom .filters").on('click', 'span', function(){
+                let el = $(this);
+                el.siblings().removeClass('on');
+                el.addClass('on');
+                todo.deleteList();
+                todo.changeFiltro(el.attr('class'));
+                
+                
+            });
+        });
+        /* Constructor del objeto Task (Tarea)*/
+        function Task(nom, tex, est = 1){
+            this.nombre = nom;
+            this.texto = tex;
+            //1: activo 2: completada
+            this.estatus = est; 
+            
+            //función para crear el label del elemento en la lista
+            this.creatLabel = function(){
+                //creamos el elemento con document fragment
+                let p = document.createElement('p');
+                // p.dataset.id = this.nombre;
+                p.setAttribute('id', this.nombre);
+                let i1 = document.createElement('i');
+                i1.classList.add('ui', 'large', 'circle', 'outline', 'icon', 'lt');
+                //dependiendo del estatus del elemeto se marca como completo o activo.
+                let span = document.createElement('span');
+                span.innerHTML = this.texto;
+                if(this.estatus == 2){
+                    i1.classList.add('check', 'blue');
+                    span.classList.add('line-through');
+    
+                }
+                let i2 = document.createElement('i');
+                i2.classList.add('ui', 'close', 'icon');
+                p.append(i1);
+                p.append(span);
+                p.append(i2);
+                //retornamos el elemento p ya creado con sus hijos.
+                return p;
+            }
+            //cambiamos el estatus de una tarea
+            this.cambiarEstatus = function(indicador){
+                this.estatus = indicador;
+            }
+        }
+        //constructor para el Objeto Todo, que es el que se encarga del control de la app TO DO
+        function Todo(){
+            var cont_task = 1; //llevamos un conteo de las tareas que se han creado
+            var lista_todo = {}; //variable en donde se guardan todas las tareas que se han creado.
+            var lista = document.querySelector('#todo .task');// seleccionamos la caja donde se colocan las tareas.
+            var filtros = 'all';
+            const todoName = 'todoList';
+            //se ejecutan las acciones al momento de cargar la página
+            this.start = function(){
+                sesion = localStorage.getItem(todoName);
+                // sesion = sessionStorage.getItem(todoName);
+                 if (sesion) {
+                    lista_todo_json = JSON.parse(sesion);
+                    for(li in lista_todo_json){
+                        // console.log();
+                        this.drawTask(lista_todo_json[li].texto, lista_todo_json[li].estatus);
+                    }
+                }
+                this.drawTasks();
+                this.comprobarLista();
+                //dibujar tareas
+            }
+            this.changeFiltro = function(filtro = false){
+                if (filtro) {
+                    filtros = filtro;
+                }
+                console.log(filtros);
+                this.drawTasks();
+            }
+            //se obtienen todos las tareas guardadas en la variable lista_todo
+            this.getLista = function(){
+                // console.log(lista_todo);
+                //se crea una copia del objeto JSon de Tareas.
+                return Object.assign({}, lista_todo);
+            }
+            //función que dibuja la nueva tarea
+            this.drawTask = function(texto, est = 1){
+                //creamos el id de la nueva tarea
+                let id_task = 'task_'+cont_task;
+                cont_task++; 
+                //creamos el nuevo objeto Task que es la tarea
+                let task = new Task(id_task, texto, est);
+                //lo agregamos a la variable lista_todo que es donde se guardan todas las tareas.
+                lista_todo[id_task] = task;
+                //guardamos los datos en localStorage
+                this.saveData();
+                let fragment = document.createDocumentFragment();
+                fragment.appendChild(task.creatLabel());
+                //llamamos a la función que solo se encarga de dibujar el label en la lista de tareas
+                this.drawer(fragment);
+                //comprobamos que la lista no este vacía
+                this.comprobarLista();
+            }
+            //Esta función solo se encarga de dibujar el label en la lista de tareas.
+            this.drawer = function(label){
+                //asignamos el elemento document fragment a la lista de tareas
+                lista.appendChild(label);
+            }
+            //función que llama a una función del objeto Task para cambiar el estatus
+            this.cambiarEstatus = function(id, indicador){
+                lista_todo[id].cambiarEstatus(indicador);
+                //guardamos los datos en localStorage
+                this.saveData();
+            }
+            //función que borra una tarea
+            this.deleteTask = function(id){
+                delete lista_todo[id];
+                lista.querySelector('#'+id).remove();
+                //guardamos los datos en localStorage
+                this.saveData();
+                this.comprobarLista();
+            }
+            //borra toda la lista de tareas del DOM, para volver a dibujar las task filtradas
+            this.deleteList = function(){
+                let lista_todo = this.getLista();
+                for(let li in lista_todo){
+                    let ts = lista.querySelector('#'+lista_todo[li].nombre);
+                    if (ts) {
+                        ts.remove();
+                    }
+                }
+            }
+            //función que comprueba si la lista de tareas esta vacía, si es así muestra una señal de lista vacía.
+            this.comprobarLista = function(){
+                let li = this.getLista();
+                let es_vacia = Object.keys(li).length === 0;
+                if (es_vacia) {
+                    $(".contenedor.todo .segments .tasks_vacias").css('display', 'flex');
+                    $(".contenedor.todo .segments .task").hide();
+                } else {
+                    $(".contenedor.todo .segments .task").show();
+                    $(".contenedor.todo .segments .tasks_vacias").hide();
+                }
+            }
+            /* Función que dibuja todas las tareas que ya existen, ademas de filtrar también. */
+            this.drawTasks = function(){
+                let lista_todo = this.getLista();
+                for(let li in lista_todo){
+                    if (filtros.includes('all')) {
+                        this.drawer(lista_todo[li].creatLabel());
+                    } else if(filtros.includes('active')){
+                        if (lista_todo[li].estatus == 1) {
+                            this.drawer(lista_todo[li].creatLabel());
+                        }
+                    }else if(filtros.includes('complete')){
+                        if (lista_todo[li].estatus == 2) {
+                            this.drawer(lista_todo[li].creatLabel());
+                        }
+                    }
+                }
+                this.comprobarLista();
+            }
+            this.saveData = function(){
+                let lista_todo = this.getLista();
+                // sessionStorage.setItem(todoName, JSON.stringify(lista_todo));
+                localStorage.setItem(todoName, JSON.stringify(lista_todo));
+            }
+    
+        }
+    
+        //inicializamos el objeto Toto
+        var todo = new Todo();
+        todo.start();
+        //creamos dos tareas por default ( Por lo pronto ).
+        // todo.drawTask('Ejemplo 1');
+        // todo.drawTask('Ejemplo 2');
+        //detectamos cuando el usuario presiona la tecla enter, para agregar una nuva tarea.
+        document.onkeypress = function(el){
+            if (el.charCode == 13) {
+                input_task = document.querySelector("#input_task");
+                //si el valor del input no es vacio, procedemos a crear la nueva tarea.
+                if ($(input_task).val() !== '') {
+                    todo.drawTask($(input_task).val());
+                }
+                //borramos el valor del input para dejarla preparada para ingresar una nueva tarea.
+                $(input_task).val('');
+            }
+        }
+    
+    </script>
+</body>
+</html>

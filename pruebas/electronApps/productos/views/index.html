@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Productos</title>
+    <style>
+        body {
+            background-color: #B7405E;
+            overflow: hidden;
+        }
+        .contendio { 
+            position: relative; 
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+        }
+        .contendio header{
+            background-color: #EFD092;
+            color: #b7405e;
+            height: 70px;
+            width: 100%;
+            position: fixed;
+            left: 0;
+            top: 0;
+            box-shadow: 0px 0px 65px -15px #1b0202;
+            border-top: 1px solid #b7405e;
+        }
+        .contendio .top { position: relative; }
+
+        .contendio .btn-Nuevo {
+            position: absolute;
+            right: 0;
+            background-color: #EFD092;
+            width: 80px;
+            height: 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 18px;
+            color: #B7405E;
+            cursor: pointer;
+            border: 2px solid #EFD092;
+        }
+        .contendio .top .btn-Nuevo:hover {
+            background-color: #B7405E;
+            color: #EFD092;
+        }
+        .contendio .content{
+            position: relative;
+            top: 90px;
+        }
+        .productos {
+            position: relative;
+            top: 50px;
+            padding: 20px 0px 20px 0px;
+            color: #B7405E;
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            overflow: auto;
+            max-height: 480px;
+        }
+
+        .productos .producto {
+            background-color: #EFD092;
+            width: 23.9%;
+            height: 200px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin-right: 10px;
+            margin-bottom: 10px;
+            border-radius: 10px;
+            position: relative;
+            top: 0;
+            transition: all .5s;
+        }
+        .productos .producto:hover {
+            top: -5px;
+            box-shadow: 0px 0px 9px 2px #0000008c;
+        }
+
+        .productos .nombre {
+            font-size: 30px;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        .productos .precio {
+            font-size: 25px;
+            padding: 10px 0px 10px 0px;
+            border-bottom: 1px solid black;
+        }
+        .clsBlur{
+            filter: blur(1px);
+        }
+        .productos::-webkit-scrollbar{
+            width: 20px;
+            background-color: #F5F5F5;
+        }
+        .productos::-webkit-scrollbar-track{
+            background-color: #B7405E;
+        }
+        .productos::-webkit-scrollbar-thumb{
+            background-color: #EFD092;
+            border-radius: 20px;
+        }
+        .productos .close-icon{
+            display: none ;
+            position: absolute;
+            top: 5px;
+            right: 10px;
+            font-size: 20px;
+            cursor: pointer;
+        }
+        .visible{
+            display: block !important;
+        }
+        .productos .desc {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <section class="contendio">
+        <header><h2 class="titulo">Almacén de Productos</h2></header>
+        <div class="content">
+            <div class="top">
+                <span class="btn-Nuevo" id="btn-Nuevo">Nuevo</span>
+            </div>
+            <div class="productos" id="productos">
+                
+            </div>
+            
+        </div>
+    </section>
+    <script src="../scripts/process.js"></script>
+</body>
+</html>

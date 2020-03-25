@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Game 1</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <style>
+        body {
+            background-image: url('http://panther-observatory.com/gallery/deepsky/media/M81_M82_c100.jpg');
+        }
+        .contenido{
+            display: flex;
+            flex-direction: row;
+            
+        }
+        .lateral-left{
+            background-color: #135488;
+            width: 30%;
+            opacity: .5;
+            color: ghostwhite;
+        }
+        .menu.lateral{
+            /* display: flex; */
+            /* width: 30% !important; */
+            /* flex-direction: column; */
+            display: grid;
+            grid-template-columns: 60% auto;
+            grid-gap: 10px;
+            padding: 10px;
+            /* background-color: #2196F3; */
+        }
+        .txt_status, .ctrl{
+            width: 100%;
+            text-align: center;
+            color: #ffc107;
+            border-bottom: outset;
+        }
+        
+        .controles{
+            /* flex-direction: row; */
+            /* width: 50%; */
+            border-right: outset;
+        }
+        .controles label, .status label{
+            align-self: center;
+            font-family: cursive;
+            /* width: 50%; */
+        }
+        .move, .shut, .specialAttk, .hp, .score, .dificulty {
+            display: flex;
+            justify-content: space-between;
+        }
+        .canvas {
+            background-color: currentColor;
+            opacity: .8;
+        }
+    </style>
+</head>
+<body>
+    <!-- Breadcrum -->
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/">Home</a></li>
+            <li class="breadcrumb-item" aria-current="page" >Game 1</li>
+        </ol>
+    </nav>
+    <div class="contenido">
+        <div class="lateral-left">
+            <div class="txt_status">
+                <h3>Player</h3>
+            </div>
+            <div class="menu lateral">
+                <div class="controles">
+                    <h4 class="ctrl">Controls</h4>
+                    <div class="move">
+                        <label>Move</label>
+                        <img width="80" height="80" src="https://res.cloudinary.com/teepublic/image/private/s--FrbhP0hm--/t_Preview/b_rgb:0195c3,c_limit,f_jpg,h_630,q_90,w_630/v1483282705/production/designs/1011992_1.jpg" alt="">
+                    </div>
+                    <div class="shut">
+                        <label>Shuter</label>
+                        <img width="80" height="80" src="https://image.flaticon.com/icons/png/512/32/32041.png" alt="">
+                    </div>
+                    <div class="specialAttk">
+                        <label>Special Attack</label>
+                        <img width="80" height="80" src="https://image.flaticon.com/icons/svg/31/31532.svg" alt="">
+                    </div>
+                </div>
+                <div class="status">
+                    <h4 class="ctrl">Status</h4>
+                    <div class="hp">
+                        <label>HP:</label>
+                        <label id="hp">0</label>
+                    </div>
+                    <div class="score">
+                        <label>Score:</label>
+                        <label id="score">0</label>
+                    </div>
+                    <div class="dificulty">
+                        <label>Dificulty:</label>
+                        <label id="dificulty">0</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="canvas">
+            <canvas id="ctx" width="500" height="500" style="border:1px solid #000000;"></canvas>
+        </div>
+    </div>
+    <script>
+        var ctx = document.getElementById("ctx").getContext("2d");
+        const HEIGHT = 500, 
+              WIDTH = 500;
+        ctx.font = '30px Arial';
+        ctx.fillStyle = "#ffffff";
+        var timeWhenGameStarted = Date.now();
+        var frameCount = 0;
+        var enemyList = {};
+        var upgradeList = {};
+        var bulletList = {};
+        var score = 0;
+        var dificulty = 0;
+        var player;
+        var stats_hp = document.querySelector("#hp");
+        var stats_score = document.querySelector("#score");
+        var dificulty_stats = document.querySelector("#dificulty");
+
+        Entity = function(type, x, spdX, y, spdY, id, width, height, color){
+            var self = {
+                type:   type,
+                x:      x,
+                spdX:   spdX,
+                y:      y,
+                spdY:   spdY,
+                id:     id,
+                width:  width,
+                height: height,
+                color:  color,
+            }
+            self.update = function (){
+                self.drawEntity();
+                self.updatePosition();
+            }
+            self.drawEntity = function(){
+                ctx.save();
+                ctx.fillStyle = self.color;
+                ctx.fillRect(self.x - self.width/2, self.y - self.height/2, self.width, self.height);
+                ctx.restore();
+            }
+            self.updatePosition = function(){
+                if (self.type === 'player') {
+                    if(player.pressingLeft)
+                        player.x -= 10;
+                    if(player.pressingRight)
+                        player.x += 10;
+                    if(player.pressingUp)
+                        player.y -= 10;
+                    if(player.pressingDown)
+                        player.y += 10;
+
+                    // check if the position is valid
+                    if(player.x < player.width/2)
+                        player.x = player.width/2;
+                    if(player.x > WIDTH - player.width/2)
+                        player.x = WIDTH - player.width/2;
+                    if(player.y < player.height/2)
+                        player.y = player.height/2;
+                    if(player.y > HEIGHT - player.height/2)
+                        player.y = HEIGHT - player.height/2;
+                } else {
+                    self.y += self.spdY;
+                    self.x += self.spdX;
+                    
+                    self.spdX = self.x > WIDTH ? -self.spdX : self.spdX;
+                    self.spdX = self.x < 0 ? -self.spdX : self.spdX;
+                    self.spdY = self.y > HEIGHT ? -self.spdY : self.spdY;
+                    self.spdY = self.y < 0 ? -self.spdY : self.spdY;
+                }
+            }
+            self.getDistanceBetween = function (entity2){
+                var vx = self.x - entity2.x;
+                var vy = self.y - entity2.y;
+
+                return Math.sqrt(vx*vx*vy*vy);
+            }
+            self.testCollision = function (entity2){
+                var rect1 = {
+                    x:self.x - self.width/2,
+                    y:self.y - self.height/2,
+                    width: self.width,
+                    height: self.height
+                }
+                var rect2 = {
+                    x:entity2.x - entity2.width/2,
+                    y:entity2.y - entity2.height/2,
+                    width: entity2.width,
+                    height: entity2.height
+                }
+                return testCollisionRectRect(rect1, rect2);
+            }
+            return self;
+        }
+        createPlayer = function(){
+            var self = Entity('player', 50, 35, 40, 5, 'myId', 20, 20, 'green');
+            self.hp = 10;
+            self.atkSpd = 1;
+            self.attackCounter = 0;
+            self.superAttackCounter = 0;
+            self.pressingDown = false;
+            self.pressingUp = false;
+            self.pressingLeft = false;
+            self.pressingRight = false;
+            self.aimAngle = 0;
+
+            player = self;
+        }
+        Enemy = function (id, x, y, spdX, spdY, width, height){
+            var self = Entity('enemy', x, spdX, y, spdY, id, width, height, '#ff3535');
+            self.hp = 0;
+            self.aimAngle = 0;
+            self.atkSpd = 1;
+            self.attackCounter = 0;
+            enemyList[id] = self;
+        }
+        Upgrade = function (id, x, y, spdX, spdY, width, height, category, color){
+            var self = Entity('upgrade', x, spdX, y, spdY, id, width, height, color);
+            self.category = category;
+            upgradeList[id] = self;
+        }
+        Bullet = function (id, x, y, spdX, spdY, width, height){
+            var self = Entity('bullet', x, spdX, y, spdY, id, width, height, 'black');
+            self.timer = 0;
+
+            bulletList[id] = self;
+        }
+        
+        
+        
+        
+        testCollisionRectRect = function(rect1, rect2){
+            return rect1.x <= rect2.x + rect2.width
+                && rect2.x <= rect1.x + rect1.width
+                && rect1.y <= rect2.y + rect2.height
+                && rect2.y <= rect1.y + rect1.height
+        }
+        
+        counter = 0;
+        document.onclick = function(){
+            performAttack(player);
+        }
+        document.onmousemove = function(mouse){
+            
+            var mouseX = mouse.clientX - document.getElementById('ctx').getBoundingClientRect().left;
+            var mouseY = mouse.clientY - document.getElementById('ctx').getBoundingClientRect().top;
+          
+            mouseX -= player.x;
+            mouseY -= player.y;
+
+            player.aimAngle = Math.atan2(mouseY, mouseX) / Math.PI * 180;
+
+        }
+        performAttack = function(autor){
+            if(autor.attackCounter > 25){ 
+                GeneratorBullet(autor);
+                autor.attackCounter = 0;
+            }
+        }
+        document.onkeydown = function(event){
+            
+            if(event.keyCode === 68)
+                player.pressingRight = true;
+            if(event.keyCode === 83)
+                player.pressingDown = true;
+            if(event.keyCode === 65)
+                player.pressingLeft = true;
+            if(event.keyCode === 87)
+                player.pressingUp = true;
+        }
+        document.onkeyup = function(event){
+            if(event.keyCode === 68)
+                player.pressingRight = false;
+            if(event.keyCode === 83)
+                player.pressingDown = false;
+            if(event.keyCode === 65)
+                player.pressingLeft = false;
+            if(event.keyCode === 87)
+                player.pressingUp = false;
+        }
+        document.oncontextmenu = function(event){
+            performSpecialAttack(player);
+            event.preventDefault();
+        }
+        performSpecialAttack = function(autor){
+            console.log(autor.superAttackCounter);
+            if (autor.superAttackCounter > 500) {
+                var noMas = 0;
+                for(var i = 0; i < 360; i++){
+                    if(noMas == 15){
+                        noMas = 0;
+                        GeneratorBullet(autor, autor.aimAngle + i);
+                    }
+                    noMas++;
+                }
+                autor.superAttackCounter = 0;
+            }
+        }
+        update = function (){
+            ctx.clearRect(0,0,WIDTH, HEIGHT);
+            frameCount++;
+            score++;
+            console.log(100 - dificulty)
+            if(frameCount % (100 - dificulty) == 0){ //cada 4 seg
+                console.log(frameCount);
+                randomlyGeneratorEnemy();
+            }
+            if(frameCount % 75 == 0) //cada 3 seg
+                randomlyGeneratorUpgrade();
+            
+            player.attackCounter += player.atkSpd; 
+            player.superAttackCounter++;
+            
+            for(var key in bulletList){
+                bulletList[key].update();
+                bulletList[key].timer++;
+                if(bulletList[key].timer > 100){
+                    delete bulletList[key];
+                    continue;
+                }
+                for(var key2 in enemyList){
+                    var isCollision = enemyList[key2].testCollision(bulletList[key]);
+                    if(isCollision){
+                        delete enemyList[key2];
+                        delete bulletList[key];
+                        score += 20;
+                        break;
+                    }
+                }
+            } 
+            for(var key in upgradeList){
+                upgradeList[key].update();
+                var isCollision = player.testCollision(upgradeList[key]);
+                if (isCollision) {
+                    if(upgradeList[key].category === 'score'){
+                        score += 100;
+                        dificulty += dificulty > 75? 0:1;
+                    }
+                        
+                    if(upgradeList[key].category === 'atkSpd'){
+                        player.atkSpd +=1;
+                        dificulty += dificulty > 75? 0:3;
+                    }
+                        
+                    delete upgradeList[key];
+                }
+            }
+            for(var key in enemyList){
+                enemyList[key].update();
+                var isCollision = player.testCollision(enemyList[key]);
+                if (isCollision) {
+                    console.log('collision');
+                    player.hp -= 1;
+                    delete enemyList[key];
+                }
+                
+            }
+            if (player.hp <= 0) {
+                var timeSurvived = Date.now() - timeWhenGameStarted;
+                console.log("Hey has perdido!, sobreviviste "+timeSurvived+" ms");
+                startNewGame();
+                
+            }
+            player.update();
+            // drawEntity(player);
+            // base_image = new Image();
+            // ctx.fillText("Move", 0, 60)
+            // base_image.src = '';
+            // ctx.drawImage(base_image, 0, 80, 50, 50);
+            stats_hp.innerHTML = player.hp;
+            stats_score.innerHTML = score;
+            dificulty_stats.innerHTML = dificulty;
+            // ctx.fillText(player.hp + "HP", 0, 30)
+            // ctx.fillText("Score: "+score, 200, 30)
+            if (player.superAttackCounter > 500) {
+                ctx.fillText("SuperAtk: Click Derecho", 100, 250)
+            }
+        }
+        startNewGame = function(){
+            timeWhenGameStarted = Date.now();
+            player.hp = 10;
+            player.superAttackCounter = 0;
+            player.attackCounter = 0;
+            dificulty = 0;
+            enemyList = {};
+            upgradeList = {};
+            bulletList = {};
+            randomlyGeneratorEnemy();
+            randomlyGeneratorEnemy();
+            randomlyGeneratorEnemy();   
+        }
+        randomlyGeneratorEnemy = function(){
+            var x = Math.random() * WIDTH;
+            var y = Math.random() * HEIGHT;
+            var height = 10 + Math.random() * 30;
+            var width = 10 + Math.random() * 30;
+            var id = Math.random();
+            var spdX = 5 + Math.random() * 5;
+            var spdY = 5 + Math.random() * 5;
+            Enemy(id, x, y, spdX, spdY, width, height);
+        }
+        randomlyGeneratorUpgrade = function(){
+            var x = Math.random() * WIDTH;
+            var y = Math.random() * HEIGHT;
+            var height = 10;
+            var width =10;
+            var id = Math.random();
+            var spdX = 0;
+            var spdY = 0;
+
+            if(Math.random() < 0.8){
+                category = 'score';
+                color = '#ffeb3b';
+            }else{
+                category = 'atkSpd';
+                color = '#00bcd4';
+            }
+            Upgrade(id, x, y, spdX, spdY, width, height, category, color);
+        }
+        GeneratorBullet = function(autor, overWriteAngle){
+            var x = autor.x;
+            var y = autor.y;
+            var height = 10;
+            var width =10;
+            var id = Math.random();
+            var angle = autor.aimAngle;
+            if (overWriteAngle !== undefined) {
+                angle = overWriteAngle;
+            }
+            var spdX = Math.cos(angle/180*Math.PI)*5;
+            var spdY = Math.sin(angle/180*Math.PI)*5;
+            Bullet(id, x, y, spdX, spdY, width, height);
+        }
+        createPlayer();
+        startNewGame();
+        setInterval(update, 40);
+    </script>
+</body>
+</html>

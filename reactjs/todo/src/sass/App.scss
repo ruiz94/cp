@@ -1,0 +1,122 @@
+
+$ff-primary: "Source Sans Pro", sans-serif ;
+$ff-secondary: "Source Code Pro", monospace;
+$fw-reg: 300;
+$fw-bold: 900;
+$clr-light: #fff;
+$clr-dark: #303030;
+$clr-accent: #56CC9D;
+$clr-accent-second: #F3969A;
+$fs-h1: 3rem;
+$fs-h2: 2.25rem;
+$fs-h3: 1.25rem;
+$fs-body: 1rem;
+$bs: 0.25em 0.25em 0.75em rgba(0,0,0,.25),
+      0.125em 0.125em 0.25em rgba(0,0,0,.15);
+
+.App{
+    .cabecera{
+        display: flex;
+        border-bottom: 2px solid $clr-accent;
+        
+        .title{
+            color: $clr-accent-second;
+        }
+        // solo para poder detectar el click en el botón del menú
+        .cont-ham{
+            // background-color: red;
+            width: 60px;
+            height: 32px;
+            position: absolute;
+            right: 15px;
+            top: 15px;
+            cursor: pointer;
+        }
+        .hamburger{
+            display: block;
+            position: absolute;
+            right: 15px;
+            top: 15px;
+        }
+        .hamburger, .hamburger::after, .hamburger::before{
+            width: 2em;
+            height: 3px;
+            background-color: $clr-accent-second;
+            border-radius: 5px;
+            transition: transform 250ms ease-in-out;
+        }
+        .hamburger::after, .hamburger::before{
+            content: '';
+            position: absolute;
+            left: 0;
+            right: 0;
+        }
+        .hamburger::after{
+            top: 7px;
+        }
+        .hamburger::before{
+            bottom: 7px;
+        }
+        .button{
+            position: absolute;
+            right: 5px;
+            top: 5px;
+        }
+    }
+    .menu{
+        position: absolute;
+        right: -100px;
+        top: -70px;
+        transition: all .5s ease-in-out;
+    }
+    .menu.clicked{
+        display: flex;
+        background-color: $clr-accent-second;
+        position: absolute;
+        top: 0px;
+        right: 0px;
+        width: 200px;
+        height: 150px;
+        justify-content: center;
+        align-items: center;
+        color: $clr-light;
+        font-size: 25px;
+        border-bottom-left-radius: 100%;
+        // border-top-right-radius: -100%;
+        border-top-right-radius: 250px;
+        box-shadow: $bs;
+        ul{
+            list-style: none;
+            .li1{
+                position: relative;
+                left: -50px;
+            }
+            .li2{
+                position: relative;
+            }
+            li{
+                border-bottom: 2px solid rgba(48, 48, 48, 0.41);
+                cursor: pointer;
+            }
+        }
+    }
+    .menu::after, .menu::before{
+        content: '';
+        display: block;
+        position: absolute;
+        background-color: inherit;
+        
+    }
+    .menu::after{
+        width: 90px;
+        height: 40px;
+        top: 0;
+        left: 50px;
+    }
+    .menu::before{
+        width: 60px;
+        height: 100px;
+        right: 0;
+        bottom: 15px;
+    }
+}

@@ -1,0 +1,262 @@
+<style>
+    #app{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    #app .product .top{
+        display: flex;
+        align-items: center;
+        width: 650px;
+        /* justify-content: space-between; */
+    }
+    #app .product-image{
+        padding-right: 3em;
+    }
+    #app .product-image .img-cart{
+        width: 300px;
+        height: 300px;
+        border: 1px solid #00000026;
+    }
+    #app .product .product-info{
+        width: 300px;
+    }
+    #app .product .product-info h1{
+        font-size: -webkit-xxx-large;
+    }
+    #app .product-info .colors .color{
+        width: 30px;
+        height: 30px;
+        background-color: green;
+        border-radius: 10px;
+    }
+    #app .product-info .colors{
+        display: flex;
+        width: 70px;
+        justify-content: space-around;
+        margin: 10px;
+    }
+    #app .outOfStock{
+        text-decoration: line-through
+    }
+    #app button{
+        border: none;
+        font-size: 25px;
+        width: 30px;
+        height: 30px;
+        color: white;
+        border-radius: 21px;
+        margin: 1px;
+        cursor: pointer;
+    }
+    #app .product-info .add{
+        background-color: #2196f3;
+    }
+    #app .product-info .del{
+        background-color: gray;
+    }
+    #app .product-info .disabledButton{
+        opacity: .4;
+    }
+    #app .product-info .cart-btn{
+        display: flex;
+        align-items: center;
+        width: 200px;
+    }
+    #app .product-info .cart-btn .count{
+        margin-left: auto;
+        border: 1px solid #9E9E9E;
+        width: 100px;
+        height: 50px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 20px;
+    }
+    #app .review-form p {
+        display: flex;
+        align-items: center;
+    }
+
+    #app .review-form input#name {width: 400px;padding: 10px;border: 1px solid #9e9e9e54;background-color: #9e9e9e17;border-radius: 5px;}
+
+    #app .review-form label {
+        font-size: 20px;
+        /* font-family: initial; */
+        margin-right: 15px;
+        width: 70px;
+    }
+
+    #app .review-form textarea#review {
+        border: 1px solid #9e9e9e54;
+        background-color: #9e9e9e17;
+        width: 400px;
+        border-radius: 6px;
+    }
+    #app .bottom{
+        margin-bottom: 100px;
+    }
+    #app .bottom h3, #app .bottom h2{
+        border-bottom: 2px solid #80808047;
+    }
+    #app .bottom #rating{
+        width: 100px;
+        background-color: #9e9e9e17;
+        border: 1px solid #9e9e9e54;
+        padding: 5px;
+    }
+    #app .cart{
+        position: absolute;
+        right: 50px;
+        top: 50px;
+    }
+    #app .cart p{
+        border: 1px solid #80808057;
+        width: 100px;
+        height: 50px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 20px;
+        border-radius: 9px;
+        background-color: #e2dede36;
+        box-shadow: 4px 5px 19px -11px #607d8b;
+        color: gray;
+    }
+    #app .bottom .btn-input{
+        display: flex;
+        justify-content: flex-end;
+    }
+    #app .bottom .btn-input input{
+        width: 80px;
+        height: 40px;
+        border-radius: 10px;
+        border: none;
+        font-size: 20px;
+        background-color: #2196f3;
+        color: white;
+    }
+    #app .bottom .no-reviews{
+        padding-left: 41px;
+        font-size: 20px;
+    }
+    #app .bottom .section-reviews .head{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+    #app .bottom .section-reviews:hover, #app .bottom .review-form:hover{
+        box-shadow: 0 0 30px -20px;
+        border-radius: 6px;
+        
+    }
+    #app .bottom .section-reviews{
+        padding: 10px;
+        transition: box-shadow .5s;
+    }
+    #app .bottom .review-form{
+        padding: 30px;
+        transition: box-shadow .5s;
+    }
+    #app .bottom .section-reviews .u-review {
+        padding: 10px;
+        border: 1px dashed #009688;
+        margin-bottom: 15px;
+        border-radius: 5px;
+    }
+
+    #app .bottom .section-reviews span.user {
+        font-size: 20px;
+        margin: 0;
+    }
+
+    #app .bottom .section-reviews p.rating {
+        margin-left: 15px;
+        color: #0000007d;
+        margin: 10px;
+    }
+
+    #app .bottom .section-reviews div.rev {
+        margin-left: 15px;
+    }
+
+    #app .bottom .section-reviews p.desc-review {
+        border: 1px solid #80808029;
+        padding: 10px;
+        background-color: #9e9e9e21;
+        width: 90% !important;
+        margin: 0;
+        border-radius: 5px;
+    }
+    #app .bottom .section-reviews span.fecha {
+        color: #0000007d;
+    }
+    #app .error{
+        color: #ff000094;
+    }
+    #app .section-errors{
+        color: #ff000094;
+        display: none;
+    }
+    #app .section-errors.have_errors{
+        display: block !important;
+    }
+    #app .activeTab{
+        color: green;
+    }
+    #app .tab{
+        font-size: 28px;
+        font-style: oblique;
+        margin-right: 20px;
+        cursor: pointer;
+    }
+    #app .tab.activeTab, #app .tab-2.activeTab{
+        color: #00897b;
+        border-bottom: 2px solid #00897b;
+    }
+    #app .tabs{
+        margin-bottom: 20px;
+    }
+    #app .tab-2{
+        font-size: 18px;
+        font-style: oblique;
+        margin-right: 20px;
+        cursor: pointer;
+    }
+    /* #app .shipping-details-tabs{
+        
+        padding: 5px;
+    } */
+    #app .shipping-details-tabs .section-shipping{
+        padding: 5px;
+    }
+    #app .shipping-details-tabs .selectedTab_content{
+        opacity: 1;
+        height: fit-content;
+
+        border-top: 1px solid #00897b;
+        border-left: 1px solid #00897b;
+        border-bottom: 1px solid #00897b;
+        border-right: 1px solid #00897b;
+        margin-top: 20px;
+        padding: 5px;
+        transition: opacity 1s, height 2s;
+    }
+    #app .shipping-details-tabs div{
+        opacity: 0;
+        height: 0;
+        transition: opacity 1s, height 2s;
+        overflow: hidden;
+    }
+</style>
+<div id="app">
+    <product :premium="premium" @add-to-cart="updateCart"></product>
+    <div class="cart">
+        <p>Cart({{ cart.length }})</p>
+    </div>
+
+    
+    
+</div>
+<script src="https://unpkg.com/vue"></script>
+<script src="/vue/vueIntro/vueMain.js"></script>

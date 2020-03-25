@@ -1,0 +1,68 @@
+body div{
+    width: 100%;
+    
+}
+$margin: 0 150px;
+.cabecera{
+    background-color: green;
+    height: 40px;
+    background: url('https://cdn-statics.hotsale.com.mx/assets/imgs/iconos/bg-hotsale.png') left bottom no-repeat;
+    background-size: cover;
+    img{
+        height: 50px;
+        width: 100px;
+    }
+    .cont{
+        display: flex;
+        margin: auto;
+        padding: 0 15px;
+    }
+    .block_2{
+        display: flex;
+        .social.media ul{
+            li{
+                display: inline-block;
+            }
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+    }
+}
+.cuadro{
+    height: 100px;
+    width: 100px;
+    background-color: brown;
+}
+@media (min-width: 1450px){
+    .cabecera .cont{
+        width: 1120px;
+    }
+    .cuadro{
+        background-color: rebeccapurple;
+    }
+    .hot.sale{
+        width: 100%;
+    }
+}
+@media (min-width: 1200px){
+    .cabecera .cont{
+        width: 1170px;
+    }
+    .cuadro{
+        background-color: cadetblue;
+    }
+}
+@media (min-width: 992px){
+    .cabecera .cont, .hot.sale{
+        width: 970px;
+    }
+}
+@media (min-width: 768px){
+    .hot.sale{
+        width: 500px;
+    }
+    .cabecera .cont{
+        width: 750px;
+    }
+}

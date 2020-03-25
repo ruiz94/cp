@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Grid Menu</title>
+        <link href="https://fonts.googleapis.com/css?family=Playfair+Display|Raleway&display=swap" rel="stylesheet"> 
+        <style>
+            *{
+                box-sizing: border-box;
+            }
+            body{
+                margin: 0;
+            }
+            html{
+                background-color: #ffe9d9;
+            }
+            img{
+                width: 50px;
+                
+            }
+            header{
+                padding: 2rem;
+                display: grid;
+                grid-template-columns: min-content auto;
+                grid-template-rows: auto auto;
+                gap: 1rem 2rem;
+                background-color: white;
+            }
+            .logo{
+                grid-row: span 2;
+                text-decoration: none;
+            }
+            .site-name{
+                margin: 0;
+                font-family: 'Raleway', sans-serif;
+                font-weight: bold;
+            }
+            .site-name a{
+                text-decoration: none;
+                color: black;
+            }
+            nav{
+                align-self: end;
+                
+            }
+            .menu{
+                list-style: none;
+                flex-wrap: wrap;
+                display: flex;
+                gap: 0 1rem;
+                margin: 0;
+                padding-left: 0;
+                font-family: 'Playfair Display', serif;
+            }
+            .menu li{
+                margin: 0;
+            }
+            .menu li a{
+                text-decoration: none;
+                color: black;
+            }
+        </style>
+    </head>
+    <body>
+        <header role="banner">
+			<a href="/" class="logo">
+				<img src="img/microphone.gif" alt="">
+			</a>
+		  <h1 class="site-name">
+		  	<a href="/" rel="home">Talking Graphic Design</a>
+		  </h1>
+		  <nav role="navigation" class="main-menu">      
+				<ul class="menu">
+					<li><a href="/">Home</a></li>
+					<li><a href="/episodes">The Episodes</a></li>
+					<li><a href="/guests">Guests</a></li>
+					<li><a href="/subscribe">Subscribe</a></li>
+					<li><a href="/about">About</a></li>
+				</ul> 
+			</nav>
+		</header>
+    </body>
+</html>

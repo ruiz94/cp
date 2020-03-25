@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>first WebSocket</title>
+    <script
+        src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+        crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css?family=Indie+Flower&display=swap" rel="stylesheet"> 
+    <style>
+        body{
+            background-color: rgba(0, 248, 155, 1);
+        }
+        .webSocket{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .webSocket .chat{
+            background-color: #D1FFE7;
+            width: 500px;
+            height: 600px;
+            border-radius: 20px;
+            box-shadow: 0px 0px 164px -33px black;
+            position: absolute;
+            overflow: hidden;
+        }
+        .webSocket .chat .bottom{
+            background-color: #0E7C7B;
+            width: 100%;
+            height: 12%;
+            position: absolute;
+            bottom: 0;
+            /* border-radius: 0 0 20px 20px; */
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+        }
+        .webSocket .chat .bottom .boxSend{
+            position: relative;
+            width: 20%;
+            height: 20%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        /* .webSocket .chat .bottom .boxSend .btnSend{
+            width: 80px;
+            height: 40px;
+            background-color: #00f89b;
+            border-radius: 45px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        } */
+        .webSocket .chat .bottom .boxSend .btnSend img{
+            width: 75px;
+            cursor: pointer;
+        }
+        input:focus {
+            outline:none !important;
+            outline-width: 0 !important;
+            box-shadow: none;
+            -moz-box-shadow: none;
+            -webkit-box-shadow: none;
+        }
+        .webSocket .chat .bottom .boxInputChat{
+            position: relative;
+            width: 75%;
+            height: 70%;
+        }
+        .webSocket .chat .bottom .boxInputChat .boxInput{
+            position: relative;
+            width: 90%;
+            height: 100%;
+            background-color: #ffffff;
+            border: none;
+            border-radius: 50px;
+            padding: 0px 0px 0px 30px;
+            color: gray;
+            font-size: 17px;
+        }
+        .webSocket .chat .top {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            background-color: #0e7c7b;
+            height: 10%;
+            padding-top: 10px;
+            padding-bottom: 10px;
+        }
+
+        .webSocket .chat .top .name_user {
+            width: 60%;
+            font-size: 25px;
+            color: #8BBC9A;
+        }
+        .webSocket .chat .top .user{
+            margin-right: -40px;
+        }
+        .webSocket .chat .top .user img{
+            width: 60px;
+            height: 60px;
+        }
+        .webSocket .chat .top .count{
+            color: antiquewhite;
+        }
+        .webSocket .chat .content{
+            background-color: #D1FFE7;
+            width: 100%;
+            height: calc(100% - (10% + 15%));
+            overflow: auto;
+        }
+        .webSocket .chat .content::-webkit-scrollbar{
+            display: none;
+        }
+        .online{
+            border-top: 6px solid #2eff38;
+        }
+        .offline{
+            border-top: 6px solid #f44336;
+        }
+        .webSocket .chat .content .mensaje{
+            display: flex;
+            width: 70%;
+            background-color: #94D1BA;
+            margin: 10px 0px 10px 20px;
+            border-radius: 15px;
+            padding: 10px;
+            position: relative;
+            flex-direction: column;
+            padding-top: 0px;
+        }
+        .webSocket .chat .content .mensaje .img-user{
+            position: relative;
+            width: 20%;
+            margin-bottom: 10px;
+            font-weight: bold;
+            color: #FE4543;
+        }
+        .webSocket .chat .content .mensaje .img-user img{
+            width: 60px;
+            height: 60px;
+            border-radius: 40px;
+            margin-bottom: -11px;
+        }
+        .webSocket .chat .content .mensaje .img-user .user-name{
+            font-family: 'Indie Flower', cursive;
+            font-size: 18px;
+        }
+        .webSocket .chat .content .mensaje .conte{
+            position: relative;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        .webSocket .chat .content .mensaje .conte .texto{
+            text-align: justify;
+            font-family: 'Indie Flower', cursive;
+        }
+        .webSocket .chat .content .mensaje .conte .fecha{
+            margin-left: auto;
+            margin-top: auto;
+            display: flex;
+            align-items: flex-end;
+            font-size: 11px;
+            color: #3A3F3B;
+        }
+        .mio{
+            margin-right: 20px !important;
+            margin-left: auto !important;
+            flex-direction: row-reverse;
+        }
+        .mio::before{
+            content: '';
+            background-color: #94D1BA;
+            width: 40px;
+            height: 20px;
+            position: absolute;
+            right: -10px;
+            bottom: 0;
+            border-radius: 0 50% / 0 100%;
+        }
+        .deOtro::before{
+            content: '';
+            background-color: #94D1BA;
+            width: 40px;
+            height: 20px;
+            position: absolute;
+            bottom: 0;
+            left: -10px;
+            border-radius: 50% 0 / 100% 0;
+        }
+        .img_borrero{
+            z-index: 4;
+            width: 100px;
+            position: absolute;
+            left: -275px;
+            bottom: 0;
+        }
+        .mueveteSr{
+            animation: meuveteSr 5s;
+        }
+        @keyframes meuveteSr{
+            0%{
+                left: -275px;
+                bottom: 0px;
+                width: 100px;
+            }50%{
+                left: 456px;
+                bottom: 60px;
+                width: 600px;
+            }100%{
+                left: -275px;
+                bottom: 0px;
+                width: 100px;
+            }
+        }
+    </style>
+</head>
+<body >
+    <div class="webSocket">
+
+        <div class="chat">
+            <div class="top">
+                <div class="user"><img src="https://img.icons8.com/color/48/000000/user-male-circle.png"></div>
+                <div class="name_user"></div>
+                <div class="count">Users: <span class="count_users"></span></div>
+            </div>
+            <div class="content">
+                <!-- <div class="body"></div> -->
+            </div>
+            <div class="bottom">
+                <div class="boxInputChat">
+
+                    <input type="text" class="boxInput" id="boxChat" autofocus placeholder="Ya callate Y escribe..">
+                </div>
+                <div class="boxSend">
+                    <div class="btnSend" id="btnSend"><img id="enviarMensaje" src="https://img.icons8.com/clouds/100/000000/forward-arrow.png"></div>
+                </div>
+            </div>
+        </div>
+        <!-- <div>
+            <button id="initConexion">Iniciar WebSocket</button>
+            <input type="text" id="Mensaje">
+            <button id="enviarMensaje">Enviar Mensaje</button>
+        </div>
+        <div class="console" style="margin-top: 10px;">
+            <h3>Console: </h3>
+            <div class="data"  style="border: 1px solid black; min-height: 50px;"></div>
+        </div> -->
+        <img class="img_borrero" src="/img/sr_borrego.gif" alt="">
+    </div>
+    <script>
+        var ws, id_user;
+        function iniciarConexion(){
+            ws = new WebSocket("ws://192.168.72.104:40615");
+            // ws = new WebSocket("ws://echo.websocket.org");
+            ws.onopen = function(){
+                // $(".webSocket .console .data").append('<p style="color: green;">Conexión abierta, Puedes enviar Mensaje</p>')
+                $(".top").addClass('online');
+                ws.send(JSON.stringify({ nombre:nombre,hostname:'armando1', evt:"auth" }) );
+            }
+            ws.onmessage = function(mensajes){
+                var objeto = JSON.parse(mensajes.data);
+                if(objeto != null){
+                    if(objeto.evt == 'auth'){
+                        console.log(objeto)
+
+                        $(".user img").attr('src', objeto.usuario.img)
+                        id_user = objeto.usuario.id_user;
+                        $(".count_users").html(objeto.count_users);
+                    }
+                    if(objeto.nombre != null){
+                        insertarMensaje(objeto)
+                        // $(".webSocket .chat .content").append('<p style="color: teal;">'+objeto.nombre+':'+objeto.mensaje+' - est: '+objeto.estatus+'</p>')
+                        $(".count_users").html(objeto.count_users);
+                    }
+                }
+            }
+            ws.onclose = function(){
+                $(".top").addClass('offline');
+                // $(".webSocket .console .data").append('<p style="color: red;">Conexión cerrada</p>')
+            }
+        }
+        var nombre = prompt("Nombre:");
+        
+        $(".name_user").html(nombre);
+        iniciarConexion()
+        // $("#initConexion").on('click', function(){
+        //     iniciarConexion();
+        // });
+        $("#enviarMensaje").on('click', function(){
+            sendMensaje()
+            
+        });
+        $("#boxChat").on('keypress', function(event){
+            if(event.keyCode == 13){
+                sendMensaje()
+            }
+        });
+        function sendMensaje(){
+            var mensaje = $("#boxChat").val()
+            detectarClave(mensaje)
+            // mensaje = new String(mensaje);
+            console.log(typeof mensaje)
+            if(mensaje && mensaje != '' && typeof mensaje == 'string' && mensaje.length <= 154){
+                let date = new Date(),
+                    fecha = date.getDate()+'-'+date.getMonth()+'-'+date.getFullYear(),
+                    time = date.getHours()+':'+date.getMinutes(),
+                    send = {
+                    evt: 'message',
+                    id_user: id_user,
+                    nombre: nombre,
+                    mensaje: $("#boxChat").val(),
+                    fecha: fecha,
+                    time: time
+                };
+                ws.send( JSON.stringify(send) );
+                $("#boxChat").val('').focus()
+            }else{
+                alert("No tes chingando ");
+            }
+        }
+        function insertarMensaje(objeto){
+            // console.log(objeto)
+            // var content = document.querySelector('.webSocket .chat .content')
+            // var fragment = document.createDocumentFragment();
+            // var div_mensaje = document.createElement('div')
+            //     div_mensaje.classList.add('mensaje')
+            //     div_mensaje.classList.add(objeto.estatus?'mio':'deOtro')
+            //         var div_img_user = document.createElement('div')
+            //             div_img_user.classList.add('img-user')
+            //                 // var img = document.createElement('img')
+            //                 //     img.setAttribute('src', 'https://img.icons8.com/color/80/000000/login-as-user.png')
+            //                 var span_user_name = document.createElement('span')
+            //                     span_user_name.classList.add('user-name')
+            //                     span_user_name.innerHTML = objeto.nombre
+            //             // div_img_user.append(img)
+            //             div_img_user.append(span_user_name)
+            //         var div_conte = document.createElement('div')
+            //             div_conte.classList.add('conte')
+            //                 var span_texto = document.createElement('span')
+            //                     span_texto.classList.add('texto')
+            //                     span_texto.innerHTML = objeto.mensaje
+            //                 var span_fecha = document.createElement('span')
+            //                     span_fecha.classList.add('fecha')
+            //                     span_fecha.innerHTML = objeto.time
+            //             div_conte.append(span_texto)
+            //             div_conte.append(span_fecha)
+            //     div_mensaje.append(div_img_user)
+            //     div_mensaje.append(div_conte)
+            // fragment.append(div_mensaje)
+            // $(".webSocket .chat .content").append(fragment)
+            
+            var msj = '<div class="mensaje '+(objeto.estatus?'mio':'deOtro')+'">'+
+                '<div class="img-user">'+
+                    '<span class="user-name">'+objeto.nombre+'</span>'+
+                    '</div>'+
+                '<div class="conte">'+
+                    '<span class="texto">'+objeto.mensaje+'</span>'+
+                    '<span class="fecha">'+objeto.time+'</span>'+
+                '</div>'+
+            '</div>';
+            $('.webSocket .chat .content').append(msj);
+            $('.webSocket .chat .content').animate({
+                scrollTop: $('.webSocket .chat .content').prop('scrollHeight') 
+            }, 500)
+            // $('#divu').scrollTop( $('#divu').prop('scrollHeight') ); 
+        }
+        function detectarClave(clave){
+            if(clave == 'Sr.borrego'){
+                $(".img_borrero").addClass('mueveteSr')
+                setTimeout(function(){
+                    $(".img_borrero").removeClass('mueveteSr')
+                }, 5000)
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="icon" type="image/png" href="https://p7.hiclipart.com/preview/1015/816/895/tic-tac-toe-pens-clip-art-tic-tac-toe-thumbnail.jpg">
+    <title>Tic Tac Toe</title>
+    <link href="https://fonts.googleapis.com/css?family=Amatic+SC|Quicksand&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/ticTacToe/css/styles.css">
+</head>
+<body>
+    <div class="contenedor">
+        <div class="winer">
+            <div class="banda">
+                <span class="texto"></span><span class="clock"></span>
+            </div>
+        </div>
+        <div class="iniciar">
+            <div class="nombre">
+                <p>Nombre Jugador</p>
+                <input type="text" name="" id="playerName">
+            </div>
+            <div class="codigo">
+                <p>Código Partida <span>(Código para unirse a una partida ya existente.)</span></p>
+                <input type="text" name="" id="codigoJuego">
+            </div>
+            <div class="jugar">
+                <button id="jugar">Jugar</button>
+            </div>
+        </div>
+        <div class="partida show">
+            <div class="stats">
+                <div class="jugador0 ">
+                    <span class="nombre"></span>
+                    <span class="wins">0</span>
+                </div>
+                <div class="tit">
+                    <div>
+                        <span class="titu">Código: </span>
+                        <span class="numero"></span>
+                    </div>
+                    <div>
+                        <span class="titu">Empates: <span class="empates">0</span></span>
+                    </div>
+                </div>
+                <div class="jugador1">
+                    <span class="nombre">Esperando</span>
+                    <span class="wins">0</span>
+                </div>
+            </div>
+            <div class="tablero stop">
+                <div class="line">
+                    <div data-id="1" id="col-1" class="col"></div>
+                    <div data-id="2" id="col-2" class="col"></div>
+                    <div data-id="3" id="col-3" class="col"></div>
+                </div>
+                <div class="line">
+                    <div data-id="4" id="col-4" class="col"></div>
+                    <div data-id="5" id="col-5" class="col"></div>
+                    <div data-id="6" id="col-6" class="col"></div>
+                </div>
+                <div class="line">
+                    <div data-id="7" id="col-7" class="col"></div>
+                    <div data-id="8" id="col-8" class="col"></div>
+                    <div data-id="9" id="col-9" class="col"></div>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+    <script src="/ticTacToe/js/conf.js"></script>
+</body>
+</html>
